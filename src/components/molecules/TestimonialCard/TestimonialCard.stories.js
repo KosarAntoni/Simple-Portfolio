@@ -12,6 +12,6 @@ const Template = (args) => <TestimonialCard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   title: 'Lorem ipsum',
-  text: 'Lorem ipsum dolor omen',
+  text: 'Lorem ipsum dolor sit amet',
   date: '1976-04-19T12:59-0500',
 };

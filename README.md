@@ -11,6 +11,8 @@
 #### Frontend: 
 >hosted by [netlify](https://www.netlify.com/)
 * React v16.13.1
+* React-moment
+* Framer motion
 * Atomic designed
 
 #### Backend: 

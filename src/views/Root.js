@@ -1,9 +1,9 @@
 import React from 'react';
-import Heading from '../components/atoms/Heading/Heading';
+import ProjectCard from '../components/organisms/ProjectCard/ProjectCard';
 
 const Root = () => (
   <div>
-    <Heading big>Hello Roman</Heading>
+    <ProjectCard />
   </div>
 );
 

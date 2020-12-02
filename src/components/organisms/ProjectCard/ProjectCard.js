@@ -61,10 +61,14 @@ const ContentWrapper = styled(motion.div)`
 const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
-  const dismissDistance = -50;
+  const dismissScrollDistance = -50;
+  const dismissSwipeDistance = 50;
 
+  const checkScrollToDismiss = (pos) => {
+    if (pos < dismissScrollDistance) setIsSelected(false);
+  };
   const checkSwipeToDismiss = (pos) => {
-    if (pos < dismissDistance) setIsSelected(false);
+    if (pos > dismissSwipeDistance) setIsSelected(false);
   };
 
   return (
@@ -79,7 +83,7 @@ const ProjectCard = () => {
       </Overlay>
       <Wrapper isSelected={isSelected}>
         <ContentWrapper
-          onWheel={(e) => checkSwipeToDismiss(e.deltaY)}
+          onWheel={(e) => checkScrollToDismiss(e.deltaY)}
           onClick={() => setIsSelected(true)}
           isSelected={isSelected}
           ref={cardRef}
@@ -90,6 +94,7 @@ const ProjectCard = () => {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+          onPan={(event, info) => checkSwipeToDismiss(info.delta.y)}
         />
       </Wrapper>
     </>

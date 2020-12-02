@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, useViewportScroll } from 'framer-motion';
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -62,13 +62,14 @@ const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
   const dismissScrollDistance = -50;
-  const dismissSwipeDistance = 50;
+  const dismissSwipeDistance = 5;
+  const { scrollYProgress } = useViewportScroll(cardRef);
 
   const checkScrollToDismiss = (pos) => {
-    if (pos < dismissScrollDistance) setIsSelected(false);
+    if (scrollYProgress.current === 0 && pos < dismissScrollDistance) setIsSelected(false);
   };
   const checkSwipeToDismiss = (pos) => {
-    if (pos > dismissSwipeDistance) setIsSelected(false);
+    if (scrollYProgress.current === 0 && pos > dismissSwipeDistance) setIsSelected(false);
   };
 
   return (
@@ -94,7 +95,7 @@ const ProjectCard = () => {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
-          onPan={(event, info) => checkSwipeToDismiss(info.delta.y)}
+          onPan={(event, info) => checkSwipeToDismiss(info.offset.y)}
         />
       </Wrapper>
     </>

@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif; 
     padding-bottom: 10rem;
+    overscroll-behavior-y: none;
   }
   
       @media screen and ${theme.viewPorts.viewport7} {

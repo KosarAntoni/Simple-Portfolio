@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
-import { useScrollConstraints } from '../../../utils/use-scroll-constraints';
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -26,13 +25,13 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: auto;
+  padding: 2rem 0;
   
   ${({ isSelected }) => isSelected && css`
     pointer-events: none;
     top: 0;
     left: 0;
     right: 0;
-    position: absolute;
     z-index: 1;
   `}
 `;
@@ -52,6 +51,7 @@ const ContentWrapper = styled(motion.div)`
     width: 100%;
     max-width: 40rem;
     height: 100%;
+    min-height: 60rem;
     margin: 0 auto;
     z-index: 2;
     cursor: initial;
@@ -61,11 +61,10 @@ const ContentWrapper = styled(motion.div)`
 const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
-  const constraints = useScrollConstraints(cardRef, isSelected);
-  const dismissDistance = 150;
+  const dismissDistance = -50;
 
   const checkSwipeToDismiss = (pos) => {
-    if (pos > dismissDistance) setIsSelected(false);
+    if (pos < dismissDistance) setIsSelected(false);
   };
 
   return (
@@ -80,6 +79,7 @@ const ProjectCard = () => {
       </Overlay>
       <Wrapper isSelected={isSelected}>
         <ContentWrapper
+          onWheel={(e) => checkSwipeToDismiss(e.deltaY)}
           onClick={() => setIsSelected(true)}
           isSelected={isSelected}
           ref={cardRef}
@@ -90,9 +90,6 @@ const ProjectCard = () => {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
-          drag={isSelected ? 'y' : false}
-          dragConstraints={constraints}
-          onDragEnd={(event, info) => checkSwipeToDismiss(info.point.y)}
         />
       </Wrapper>
     </>

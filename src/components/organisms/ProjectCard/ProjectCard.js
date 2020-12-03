@@ -1,6 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { motion, useViewportScroll } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
+import CloseIcon from '../../../assets/times-solid.svg';
+
+const PositionHolder = styled.div`
+  position: ${({ isSelected }) => (isSelected ? 'relative' : 'absolute')};
+  z-index: -1;
+  height: 16rem;
+  width: 16rem;
+`;
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -25,9 +33,10 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: auto;
-  padding: 2rem 1rem;
   
   ${({ isSelected }) => isSelected && css`
+    padding: 2rem 1rem;
+    position: fixed;
     pointer-events: none;
     top: 0;
     left: 0;
@@ -38,13 +47,7 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled(motion.div)`
   position: relative;
-  background: repeating-linear-gradient(
-  45deg,
-  #606dbc,
-  #606dbc 10px,
-  #465298 10px,
-  #465298 20px
-);
+  background: white;
   width: 16rem;
   height: 16rem;
   margin: 0;
@@ -57,35 +60,38 @@ const ContentWrapper = styled(motion.div)`
     width: 100%;
     max-width: 40rem;
     height: 100%;
-    min-height: 160rem;
     margin: 0 auto;
-    z-index: 2;
     cursor: initial;
   `}
 `;
 
+const CloseButton = styled(motion.button)`
+  position: absolute;
+  top: 2rem;
+  right: ${({ isSelected }) => (isSelected ? '2rem' : '-2rem')};
+  transform: scale( ${({ isSelected }) => (isSelected ? '1' : '0')});
+  width: 3rem;
+  height: 3rem;
+  background: url("${CloseIcon}") no-repeat center;
+  color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: scale 0.3s ease;
+  
+  :focus {
+    outline: none;
+  }
+`;
+
 const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
-  const cardRef = useRef(null);
-  const dismissScrollDistance = -50;
-  const dismissSwipeDistance = 4;
-  const { scrollYProgress } = useViewportScroll(cardRef);
-  const [y, setY] = useState(0);
+  const zIndex = useMotionValue(isSelected ? 2 : 0);
 
-  const checkScrollToDismiss = (pos) => {
-    if (isSelected && scrollYProgress.current === 0) {
-      setY(pos * -5);
-    }
-    if (scrollYProgress.current === 0
-      && (pos < dismissScrollDistance || y > dismissScrollDistance * -1)) {
-      setIsSelected(false);
-      setY(0);
-    }
-  };
-  const checkSwipeToDismiss = (pos) => {
-    setY(pos * 2);
-    if (scrollYProgress.current === 0 && pos > dismissSwipeDistance) {
-      setIsSelected(false);
+  const checkZIndex = (latest) => {
+    if (isSelected) {
+      zIndex.set(2);
+    } else if (!isSelected && latest.borderRadius === '100%') {
+      zIndex.set(0);
     }
   };
 
@@ -101,22 +107,27 @@ const ProjectCard = () => {
       </Overlay>
       <Wrapper isSelected={isSelected}>
         <ContentWrapper
-          onWheel={(e) => checkScrollToDismiss(e.deltaY)}
-          onClick={() => setIsSelected(true)}
+          onClick={() => !isSelected && setIsSelected(true)}
           isSelected={isSelected}
-          ref={cardRef}
           layout
-          style={{ y }}
+          style={{ zIndex }}
           animate={isSelected ? {
             borderRadius: '2rem',
           } : {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
-          onPan={isSelected && ((event, info) => checkSwipeToDismiss(info.offset.y))}
-          onPanEnd={() => setY(0)}
-        />
+          onUpdate={checkZIndex}
+        >
+          <CloseButton
+            onClick={() => setIsSelected(false)}
+            isSelected={isSelected}
+          >
+            Close
+          </CloseButton>
+        </ContentWrapper>
       </Wrapper>
+      <PositionHolder isSelected={isSelected} />
     </>
   );
 };

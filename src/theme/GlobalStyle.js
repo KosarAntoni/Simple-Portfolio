@@ -17,14 +17,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif; 
-    padding-bottom: 10rem;
-    overscroll-behavior-y: none;
   }
   
       @media screen and ${theme.viewPorts.viewport7} {
         body {
-          padding-left: 10rem;
-          padding-bottom: 0;
           font-size: 1.6rem;
         }
       }

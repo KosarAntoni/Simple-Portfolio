@@ -7,6 +7,8 @@ const Root = () => (
   <ThemeProvider theme={GlobalStyle}>
     <GlobalStyle />
     <ProjectCard />
+    <ProjectCard />
+    <ProjectCard />
   </ThemeProvider>
 );
 

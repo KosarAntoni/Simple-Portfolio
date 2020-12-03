@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { motion, useViewportScroll } from 'framer-motion';
+import { motion, useViewportScroll, useMotionValue } from 'framer-motion';
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: auto;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   
   ${({ isSelected }) => isSelected && css`
     pointer-events: none;
@@ -62,8 +62,9 @@ const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
   const dismissScrollDistance = -50;
-  const dismissSwipeDistance = 3;
+  const dismissSwipeDistance = 50;
   const { scrollYProgress } = useViewportScroll(cardRef);
+  const scale = useMotionValue(1);
 
   const checkScrollToDismiss = (pos) => {
     if (scrollYProgress.current === 0 && pos < dismissScrollDistance) setIsSelected(false);
@@ -89,12 +90,14 @@ const ProjectCard = () => {
           isSelected={isSelected}
           ref={cardRef}
           layout
+          style={{ scale }}
           animate={isSelected ? {
             borderRadius: '2rem',
           } : {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+          whileTap={{ y: 10 }}
           onPan={(event, info) => checkSwipeToDismiss(info.offset.y)}
         />
       </Wrapper>

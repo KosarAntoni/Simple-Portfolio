@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { motion, useViewportScroll, useMotionValue } from 'framer-motion';
+import { motion, useViewportScroll } from 'framer-motion';
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -51,7 +51,7 @@ const ContentWrapper = styled(motion.div)`
     width: 100%;
     max-width: 40rem;
     height: 100%;
-    min-height: 60rem;
+    min-height: 160rem;
     margin: 0 auto;
     z-index: 2;
     cursor: initial;
@@ -62,15 +62,22 @@ const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
   const dismissScrollDistance = -50;
-  const dismissSwipeDistance = 50;
+  const dismissSwipeDistance = 5;
   const { scrollYProgress } = useViewportScroll(cardRef);
-  const scale = useMotionValue(1);
+  const [y, setY] = useState(0);
 
   const checkScrollToDismiss = (pos) => {
-    if (scrollYProgress.current === 0 && pos < dismissScrollDistance) setIsSelected(false);
+    setY(pos * -1);
+    if (scrollYProgress.current === 0 && pos < dismissScrollDistance) {
+      setIsSelected(false);
+      setY(0);
+    }
   };
   const checkSwipeToDismiss = (pos) => {
-    if (scrollYProgress.current === 0 && pos > dismissSwipeDistance) setIsSelected(false);
+    setY(pos * 100);
+    if (scrollYProgress.current === 0 && pos > dismissSwipeDistance) {
+      setIsSelected(false);
+    }
   };
 
   return (
@@ -90,15 +97,16 @@ const ProjectCard = () => {
           isSelected={isSelected}
           ref={cardRef}
           layout
-          style={{ scale }}
+          y={isSelected ? y : 0}
           animate={isSelected ? {
             borderRadius: '2rem',
           } : {
             borderRadius: '100%',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 40 }}
-          whileTap={{ y: 10 }}
+          // whileTap={{ scale: 0.98 }}
           onPan={(event, info) => checkSwipeToDismiss(info.offset.y)}
+          onPanEnd={() => setY(0)}
         />
       </Wrapper>
     </>

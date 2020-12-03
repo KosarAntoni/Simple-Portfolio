@@ -68,7 +68,7 @@ const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
   const dismissScrollDistance = -50;
-  const dismissSwipeDistance = 20;
+  const dismissSwipeDistance = 4;
   const { scrollYProgress } = useViewportScroll(cardRef);
   const [y, setY] = useState(0);
 

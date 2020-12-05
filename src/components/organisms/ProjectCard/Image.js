@@ -2,8 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { animation } from './animation';
 
-const Wrapper = motion.div;
+const Wrapper = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+`;
 
 const ProjectImage = styled(motion.img)`
   height: 100%;
@@ -11,12 +17,12 @@ const ProjectImage = styled(motion.img)`
   max-height: 30rem;
 `;
 
-const ProjectCardImage = ({ isSelected }) => (
+const Image = ({ isSelected }) => (
   <Wrapper
     initial={false}
     layout
     animate={{ height: isSelected ? '30rem' : '16rem' }}
-    transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+    transition={animation}
   >
     <ProjectImage
       src="https://picsum.photos/seed/picsum/400/300"
@@ -26,12 +32,12 @@ const ProjectCardImage = ({ isSelected }) => (
   </Wrapper>
 );
 
-ProjectCardImage.propTypes = {
+Image.propTypes = {
   isSelected: PropTypes.bool,
 };
 
-ProjectCardImage.defaultProps = {
+Image.defaultProps = {
   isSelected: false,
 };
 
-export default ProjectCardImage;
+export default Image;

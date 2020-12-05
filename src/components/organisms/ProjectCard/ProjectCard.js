@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
-import CloseIcon from '../../../assets/times-solid.svg';
-import Heading from '../../atoms/Heading/Heading';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
-import ProjectCardImage from './ProjectCardImage';
+import Image from './Image';
+import Content from './Content';
+import { animation } from './animation';
+import CardHeading from './Heading';
 
 const Wrapper = styled.div`
   position: relative;
@@ -72,49 +72,6 @@ const ContentContainer = styled(motion.div)`
   `}
 `;
 
-const TextWrapper = styled(motion.div)`
-  padding: 2rem;
-`;
-
-const HeadingWrapper = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-`;
-
-const StyledHeading = styled(Heading)`
-  padding: 0.5rem 1rem;
-  border-radius: 10rem;
-  background-color: ${({ theme }) => theme.white};
-  margin: 0;
-`;
-
-const CloseButton = styled(motion.button)`
-  width: 3rem;
-  height: 3rem;
-  background: url("${CloseIcon}") no-repeat center;
-  background-size: 40%;
-  color: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 10rem;
-  background-color: ${({ theme }) => theme.white};
-  transition: box-shadow 0.2s, transform 0.3s;
-  
-  :hover {
-      box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
-      transform: scale(1.1);
-  }
-  
-  :focus {
-    outline: none;
-  }
-`;
-
 const ProjectCard = () => {
   const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
@@ -152,60 +109,12 @@ const ProjectCard = () => {
           } : {
             borderRadius: '100%',
           }}
-          transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+          transition={animation}
           onUpdate={checkZIndex}
         >
-          <ProjectCardImage isSelected={isSelected} />
-          <HeadingWrapper
-            initial={false}
-            animate={{ y: isSelected ? '0' : '-100%' }}
-            transition={isSelected ? { duration: 0.3, delay: 0.5 } : { duration: 0, delay: 0 }}
-          >
-            <StyledHeading>Lorem ipsum</StyledHeading>
-            <CloseButton
-              onClick={() => setIsSelected(false)}
-              isSelected={isSelected}
-            >
-              Close
-            </CloseButton>
-          </HeadingWrapper>
-          <TextWrapper
-            layout
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-          >
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-            <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-            </Paragraph>
-          </TextWrapper>
+          <Image isSelected={isSelected} />
+          <CardHeading isSelected={isSelected} setIsSelected={setIsSelected} />
+          <Content />
         </ContentContainer>
       </ContentWrapper>
     </Wrapper>

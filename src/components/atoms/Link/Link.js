@@ -5,7 +5,7 @@ const Link = styled.a`
   text-decoration: none;
   transition: all 0.3s;
   color: ${({ theme, color }) => (color || theme.grey)};
-  font-size: ${({ theme }) => theme.fontSize.m};
+  font-size: ${({ theme }) => theme.fontSize.l};
 
   
   ::before {

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import CloseIcon from '../../../assets/times-solid.svg';
+import Heading from '../../atoms/Heading/Heading';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
+import ProjectCardImage from './ProjectCardImage';
 
-const PositionHolder = styled.div`
-  position: ${({ isSelected }) => (isSelected ? 'relative' : 'absolute')};
-  z-index: -1;
+const Wrapper = styled.div`
+  position: relative;
   height: 16rem;
   width: 16rem;
 `;
@@ -16,7 +18,7 @@ const Overlay = styled(motion.div)`
 	left: 0;
 	bottom: 0;
 	width: 100vw;
-	background: rgba(0,0,0, 0.2);
+	background: rgba(0,0,0, 0.4);
 	z-index: 1;
 `;
 
@@ -29,7 +31,7 @@ const Redirect = styled.a`
   cursor: pointer;
 `;
 
-const Wrapper = styled.div`
+const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: auto;
@@ -45,38 +47,68 @@ const Wrapper = styled.div`
   `}
 `;
 
-const ContentWrapper = styled(motion.div)`
+const ContentContainer = styled(motion.div)`
   position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 40rem;
+  max-height: 100%;
   background: white;
-  width: 16rem;
-  height: 16rem;
-  margin: 0;
+  margin: auto;
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
   
   ${({ isSelected }) => isSelected && css`
+    overflow-y: scroll;
     pointer-events: auto;
-    width: 100%;
-    max-width: 40rem;
-    height: 100%;
-    margin: 0 auto;
     cursor: initial;
+    
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+    ::-webkit-scrollbar {
+      display: none;
+    }
   `}
 `;
 
-const CloseButton = styled(motion.button)`
+const TextWrapper = styled(motion.div)`
+  padding: 2rem;
+`;
+
+const HeadingWrapper = styled(motion.div)`
   position: absolute;
-  top: 2rem;
-  right: ${({ isSelected }) => (isSelected ? '2rem' : '-2rem')};
-  transform: scale( ${({ isSelected }) => (isSelected ? '1' : '0')});
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+`;
+
+const StyledHeading = styled(Heading)`
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  background-color: ${({ theme }) => theme.white};
+  margin: 0;
+`;
+
+const CloseButton = styled(motion.button)`
   width: 3rem;
   height: 3rem;
   background: url("${CloseIcon}") no-repeat center;
+  background-size: 40%;
   color: transparent;
   border: none;
   cursor: pointer;
-  transition: scale 0.3s ease;
+  border-radius: 10rem;
+  background-color: ${({ theme }) => theme.white};
+  transition: box-shadow 0.2s, transform 0.3s;
+  
+  :hover {
+      box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
+      transform: scale(1.1);
+  }
   
   :focus {
     outline: none;
@@ -96,7 +128,7 @@ const ProjectCard = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <Overlay
         isSelected={isSelected}
         animate={{ opacity: isSelected ? 1 : 0 }}
@@ -105,8 +137,12 @@ const ProjectCard = () => {
       >
         <Redirect onClick={() => setIsSelected(false)} />
       </Overlay>
-      <Wrapper isSelected={isSelected}>
-        <ContentWrapper
+      <ContentWrapper
+        layout
+        isSelected={isSelected}
+      >
+        <ContentContainer
+          initial={false}
           onClick={() => !isSelected && setIsSelected(true)}
           isSelected={isSelected}
           layout
@@ -116,28 +152,64 @@ const ProjectCard = () => {
           } : {
             borderRadius: '100%',
           }}
-          transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 30 }}
           onUpdate={checkZIndex}
         >
-          <CloseButton
-            onClick={() => setIsSelected(false)}
-            isSelected={isSelected}
+          <ProjectCardImage isSelected={isSelected} />
+          <HeadingWrapper
+            initial={false}
+            animate={{ y: isSelected ? '0' : '-100%' }}
+            transition={isSelected ? { duration: 0.3, delay: 0.5 } : { duration: 0, delay: 0 }}
           >
-            Close
-          </CloseButton>
-        </ContentWrapper>
-      </Wrapper>
-      <PositionHolder isSelected={isSelected} />
-    </>
+            <StyledHeading>Lorem ipsum</StyledHeading>
+            <CloseButton
+              onClick={() => setIsSelected(false)}
+              isSelected={isSelected}
+            >
+              Close
+            </CloseButton>
+          </HeadingWrapper>
+          <TextWrapper
+            layout
+            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+          >
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
+              atque doloribus eos facilis laudantium libero natus odit quas voluptate?
+            </Paragraph>
+          </TextWrapper>
+        </ContentContainer>
+      </ContentWrapper>
+    </Wrapper>
   );
 };
-
-// ProjectCard.propTypes = {
-//   isSelected: PropTypes.bool,
-// };
-//
-// ProjectCard.defaultProps = {
-//   isSelected: false,
-// };
 
 export default ProjectCard;

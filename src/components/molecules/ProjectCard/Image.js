@@ -12,6 +12,10 @@ const Wrapper = styled(motion.div)`
   height: ${({ isSelected }) => (isSelected ? '30rem' : '16rem')};
     
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    height: ${({ isSelected }) => (isSelected ? '30rem' : '20rem')};
+  }
+    
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} { 
     height: ${({ isSelected }) => (isSelected ? '30rem' : '25rem')};
   }
 `;

@@ -14,9 +14,9 @@ export const theme = {
     xl: '3rem',
   },
   viewPorts: {
-    viewport4: '(min-width: 480px)',
-    viewport7: '(min-width: 768px)',
-    viewport9: '(min-width: 992px)',
-    viewport12: '(min-width: 1200px)',
+    viewport4: '(min-width: 481px)',
+    viewport7: '(min-width: 769px)',
+    viewport9: '(min-width: 993px)',
+    viewport12: '(min-width: 1201px)',
   },
 };

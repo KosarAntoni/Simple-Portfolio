@@ -12,6 +12,7 @@ export const theme = {
     m: '2rem',
     l: '2.2rem',
     xl: '3rem',
+    xxl: '4rem',
   },
   viewPorts: {
     viewport4: '(min-width: 481px)',

@@ -65,7 +65,7 @@ const TestimonialsView = () => (
           if you want contact me find me on
           {' '}
           <Link
-            href="#https://simple-portfolio-by-kosar.netlify.app/"
+            href="https://simple-portfolio-by-kosar.netlify.app/"
             color="rgb(24, 119, 242)"
           >
             Facebook

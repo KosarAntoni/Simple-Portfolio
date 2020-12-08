@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -68,48 +69,61 @@ const RightColumn = styled.ul`
   flex-direction: column;
 `;
 
-const ProjectsContainer = () => (
-  <Wrapper>
-    <LeftColumn>
-      {
-        DummyItems.map((item, i) => (
-          !(i % 2) && (
-          <motion.li
-            custom={i}
-            variants={ItemAnimation}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            transition={{
-              type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
-            }}
-          >
-            <ProjectCard />
-          </motion.li>
-          )
-        ))
-      }
-    </LeftColumn>
-    <RightColumn>
-      {
-        DummyItems.map((item, i) => (
-          !!(i % 2) && (
-            <motion.li
-              custom={i}
-              variants={ItemAnimation}
-              initial="hidden"
-              animate="visible"
-              transition={{
-                type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
-              }}
-            >
-              <ProjectCard />
-            </motion.li>
-          )
-        ))
-      }
-    </RightColumn>
-  </Wrapper>
+const ProjectsContainer = ({ isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+    <Wrapper>
+      <LeftColumn>
+        {
+              DummyItems.map((item, i) => (
+                !(i % 2) && (
+                  <motion.li
+                    custom={i}
+                    variants={ItemAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{
+                      type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+                    }}
+                  >
+                    <ProjectCard />
+                  </motion.li>
+                )
+              ))
+            }
+      </LeftColumn>
+      <RightColumn>
+        {
+              DummyItems.map((item, i) => (
+                !!(i % 2) && (
+                  <motion.li
+                    custom={i}
+                    variants={ItemAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{
+                      type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+                    }}
+                  >
+                    <ProjectCard />
+                  </motion.li>
+                )
+              ))
+            }
+      </RightColumn>
+    </Wrapper>
+    )}
+  </AnimatePresence>
 );
+
+ProjectsContainer.propTypes = {
+  isVisible: PropTypes.bool,
+};
+
+ProjectsContainer.defaultProps = {
+  isVisible: false,
+};
 
 export default ProjectsContainer;

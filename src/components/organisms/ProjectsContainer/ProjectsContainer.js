@@ -34,8 +34,21 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 100vh;
-  overflow: hidden;
+  height: 700px;
+  width: 100%;
+
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    position: fixed;
+    right: 0;
+    max-width: 410px;
+    height: 100vh;
+  }
+  
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} { 
+    max-width: 510px;
+    right: auto;
+    left: 58%;
+  }
 `;
 
 const LeftColumn = styled.ul`

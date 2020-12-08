@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Heading = styled.h1`
   font-size: ${({ theme, big }) => (big ? theme.fontSize.xl : theme.fontSize.s)};
-  margin-bottom: ${({ theme, big }) => (big ? theme.fontSize.m : theme.fontSize.xs)};
+  margin-bottom: ${({ theme }) => (theme.fontSize.xs)};
   font-weight:  ${({ theme }) => theme.bold};
   color: ${({ theme }) => theme.black};
 `;

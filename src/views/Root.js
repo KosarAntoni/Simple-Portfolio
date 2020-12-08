@@ -1,15 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import ProjectCard from '../components/organisms/ProjectCard/ProjectCard';
 import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
+import ProjectsView from './ProjectsView';
 
 const Root = () => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
+    <ProjectsView />
+    {/* <TestimonialsView /> */}
   </ThemeProvider>
 );
 

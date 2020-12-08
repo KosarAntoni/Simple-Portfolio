@@ -10,6 +10,13 @@ const Wrapper = styled.div`
   position: relative;
   height: 16rem;
   width: 16rem;
+  margin: 0.5rem;
+  
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    height: 25rem;
+    width: 25rem;
+    margin: 1rem;
+  }
 `;
 
 const Overlay = styled(motion.div)`
@@ -87,6 +94,7 @@ const ProjectCard = () => {
   return (
     <Wrapper>
       <Overlay
+        initial={false}
         isSelected={isSelected}
         animate={{ opacity: isSelected ? 1 : 0 }}
         transition={{ duration: 0.2 }}

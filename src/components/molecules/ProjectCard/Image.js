@@ -9,6 +9,11 @@ const Wrapper = styled(motion.div)`
   top: 0;
   left: 0;
   z-index: 3;
+  height: ${({ isSelected }) => (isSelected ? '30rem' : '16rem')};
+    
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    height: ${({ isSelected }) => (isSelected ? '30rem' : '25rem')};
+  }
 `;
 
 const ProjectImage = styled(motion.img)`
@@ -19,9 +24,9 @@ const ProjectImage = styled(motion.img)`
 
 const Image = ({ isSelected }) => (
   <Wrapper
+    isSelected={isSelected}
     initial={false}
     layout
-    animate={{ height: isSelected ? '30rem' : '16rem' }}
     transition={animation}
   >
     <ProjectImage

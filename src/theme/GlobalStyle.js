@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   
+  ul {
+  	list-style: none;
+  }
+  
   html {
     font-size: 62.5%;
   }

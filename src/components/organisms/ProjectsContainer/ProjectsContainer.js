@@ -16,6 +16,9 @@ const ItemAnimation = {
     x: !(i % 2) ? (getRandom(2, 5) * -100) : (getRandom(2, 5) * 100),
     y: getRandom(-2, 2) * 100,
   }),
+  exit: {
+    scale: 0,
+  },
 };
 
 const DummyItems = [
@@ -76,7 +79,10 @@ const ProjectsContainer = () => (
             variants={ItemAnimation}
             initial="hidden"
             animate="visible"
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+            exit="exit"
+            transition={{
+              type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+            }}
           >
             <ProjectCard />
           </motion.li>
@@ -93,7 +99,9 @@ const ProjectsContainer = () => (
               variants={ItemAnimation}
               initial="hidden"
               animate="visible"
-              transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+              transition={{
+                type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+              }}
             >
               <ProjectCard />
             </motion.li>

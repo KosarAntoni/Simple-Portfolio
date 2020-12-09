@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { loremIpsum } from 'react-lorem-ipsum';
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import Link from '../components/atoms/Link/Link';
+
+const animation = { type: 'spring', stiffness: 100, damping: 15 };
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,22 +41,63 @@ const ContentSection = styled.div`
   }  
 `;
 
-const TestimonialsView = () => (
+const HeadingWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const BreakLine = styled.div`
+  height: 4px;
+  width: 60%;
+  background-color: ${({ theme }) => theme.black};
+  border-radius: 50rem;
+  margin: 1rem auto 2rem 0;
+`;
+
+const TestimonialsView = ({ isVisible }) => (
   <Wrapper>
     <ContentSection>
 
-      <div>
-        <Heading big>Testimonials of breathtaking people</Heading>
-        <Heading big>
-          {loremIpsum({ avgWordsPerSentence: 5, avgSentencesPerParagraph: 1 })[0]}
+      <HeadingWrapper>
+        <Heading
+          big
+          as={motion.h1}
+          animate={{ y: isVisible ? '0%' : '200%' }}
+          transition={animation}
+        >
+          Testimonials of breathtaking people
+        </Heading
+        >
+      </HeadingWrapper>
+      <BreakLine />
+      <HeadingWrapper>
+        <Heading
+          big
+          as={motion.h1}
+          animate={{ y: isVisible ? '0%' : '-100%' }}
+          transition={animation}
+        >
+          Lorem ipsum dolor sit amet
         </Heading>
-      </div>
+      </HeadingWrapper>
 
       <div>
-        <Paragraph big>
-          {loremIpsum({ avgSentencesPerParagraph: 4 })[0]}
+        <Paragraph
+          big
+          as={motion.p}
+          animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
+          transition={{ ...animation, delay: 0.5 }}
+        >
+          Lorem ipsum dolor sit amet consectetur adipiscing elit.
+          Amet consectetur adipiscing elit quisque faucibus ex sapien.
+          Quisque faucibus ex sapien vitae pellentesque sem placerat.
+          Vitae pellentesque sem placerat in id cursus mi.
         </Paragraph>
-        <Paragraph big>
+        <Paragraph
+          big
+          as={motion.p}
+          animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
+          transition={{ ...animation, delay: 0.8 }}
+        >
           Currently working as designer at
           {' '}
           <Link
@@ -96,5 +140,13 @@ const TestimonialsView = () => (
     </ContentSection>
   </Wrapper>
 );
+
+TestimonialsView.propTypes = {
+  isVisible: PropTypes.bool,
+};
+
+TestimonialsView.defaultProps = {
+  isVisible: false,
+};
 
 export default TestimonialsView;

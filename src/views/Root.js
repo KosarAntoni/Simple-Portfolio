@@ -19,10 +19,10 @@ const Root = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <ProjectsView />
+      <ProjectsView isVisible={currentSection === 'projects'} />
       {window.innerWidth > 768 && <CardsContainer currentSection={currentSection} />}
       {window.innerWidth <= 768 && <CardsContainer currentSection="projects" />}
-      <TestimonialsView />
+      <TestimonialsView isVisible={currentSection === 'testimonials'} />
       {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />}
     </ThemeProvider>
   );

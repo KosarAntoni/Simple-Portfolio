@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import ProjectsContainer from '../components/organisms/ProjectsContainer/ProjectsContainer';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
 
@@ -38,41 +36,30 @@ const ContentSection = styled.div`
   }
 `;
 
-const ProjectsView = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  useScrollPosition(({ currPos }) => {
-    if (window.innerWidth > 768) {
-      if ((currPos.y * -1) < (window.innerHeight / 2)) setIsVisible(true);
-      else setIsVisible(false);
-    }
-  });
+const ProjectsView = () => (
+  <Wrapper>
+    <ContentSection>
 
-  return (
-    <Wrapper>
-      <ContentSection>
+      <div>
+        <Heading big>Some info about me</Heading>
+        <Heading big>and my projects</Heading>
+      </div>
 
-        <div>
-          <Heading big>Some info about me</Heading>
-          <Heading big>and my projects</Heading>
-        </div>
+      <div>
+        <Paragraph big>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aut commodi
+          deserunt eos ipsam
+          itaque magnam mollitia quas, tempore.
+        </Paragraph>
+        <Paragraph big>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, quis, quod. Aliquid
+          corporis facilis
+          fugiat vero!
+        </Paragraph>
+      </div>
 
-        <div>
-          <Paragraph big>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aut commodi
-            deserunt eos ipsam
-            itaque magnam mollitia quas, tempore.
-          </Paragraph>
-          <Paragraph big>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, quis, quod. Aliquid
-            corporis facilis
-            fugiat vero!
-          </Paragraph>
-        </div>
-
-      </ContentSection>
-      <ProjectsContainer isVisible={isVisible} />
-    </Wrapper>
-  );
-};
+    </ContentSection>
+  </Wrapper>
+);
 
 export default ProjectsView;

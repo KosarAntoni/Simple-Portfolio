@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
+import TestimonialCard from '../../molecules/TestimonialCard/TestimonialCard';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const ItemAnimation = {
+const ProjectsAnimation = {
   visible: {
     scale: 1,
     x: 0,
@@ -22,7 +23,25 @@ const ItemAnimation = {
   },
 };
 
-const DummyItems = [
+const TestimonialsAnimation = {
+  visible: {
+    scale: 1,
+    y: 0,
+    opacity: 1,
+  },
+  hidden: (i) => ({
+    scale: 0.8,
+    y: (i + 1) * 50,
+    opacity: 0,
+  }),
+  exit: (i) => ({
+    scale: 0.8,
+    y: (i + 1) * -20,
+    opacity: 0,
+  }),
+};
+
+const DummyProjects = [
   <ProjectCard />,
   <ProjectCard />,
   <ProjectCard />,
@@ -30,6 +49,54 @@ const DummyItems = [
   <ProjectCard />,
   <ProjectCard />,
   <ProjectCard />,
+];
+
+const DummyTestimonials = [
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
+  <TestimonialCard
+    title="Lorem ipsum"
+    text="Lorem ipsum dolor sit amet"
+    date="1976-04-19T12:59-0500"
+  />,
 ];
 
 const Wrapper = styled.div`
@@ -43,6 +110,7 @@ const Wrapper = styled.div`
 
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
     position: fixed;
+    top: 0;
     right: 0;
     max-width: 410px;
     height: 100vh;
@@ -55,31 +123,45 @@ const Wrapper = styled.div`
   }
 `;
 
-const LeftColumn = styled.ul`
+const LeftProjectsColumn = styled.ul`
   position: absolute;
   right: calc(50% - 1rem);
   display: flex;
   flex-direction: column;
 `;
 
-const RightColumn = styled.ul`
+const RightProjectsColumn = styled.ul`
   position: absolute;
   left: calc(50% - 1rem);
   display: flex;
   flex-direction: column;
 `;
 
-const ProjectsContainer = ({ isVisible }) => (
-  <AnimatePresence>
-    {isVisible && (
-    <Wrapper>
-      <LeftColumn>
+const LeftColumn = styled.ul`
+  position: absolute;
+  right: 50%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const RightColumn = styled.ul`
+  position: absolute;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProjectsContainer = ({ currentSection }) => (
+  <AnimatePresence exitBeforeEnter>
+    {currentSection === 'projects' && (
+    <Wrapper key="projects">
+      <LeftProjectsColumn>
         {
-              DummyItems.map((item, i) => (
+              DummyProjects.map((item, i) => (
                 !(i % 2) && (
                   <motion.li
                     custom={i}
-                    variants={ItemAnimation}
+                    variants={ProjectsAnimation}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
@@ -87,7 +169,51 @@ const ProjectsContainer = ({ isVisible }) => (
                       type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
                     }}
                   >
-                    <ProjectCard />
+                    {item}
+                  </motion.li>
+                )
+              ))
+            }
+      </LeftProjectsColumn>
+      <RightProjectsColumn>
+        {
+              DummyProjects.map((item, i) => (
+                !!(i % 2) && (
+                  <motion.li
+                    custom={i}
+                    variants={ProjectsAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{
+                      type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+                    }}
+                  >
+                    {item}
+                  </motion.li>
+                )
+              ))
+            }
+      </RightProjectsColumn>
+    </Wrapper>
+    )}
+    {currentSection === 'testimonials' && (
+    <Wrapper key="testimonials">
+      <LeftColumn>
+        {
+              DummyTestimonials.map((item, i) => (
+                !(i % 2) && (
+                  <motion.li
+                    custom={i}
+                    variants={TestimonialsAnimation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{
+                      type: 'spring', stiffness: 300, damping: 30, delay: i / 10,
+                    }}
+                  >
+                    {item}
                   </motion.li>
                 )
               ))
@@ -95,19 +221,19 @@ const ProjectsContainer = ({ isVisible }) => (
       </LeftColumn>
       <RightColumn>
         {
-              DummyItems.map((item, i) => (
+              DummyTestimonials.map((item, i) => (
                 !!(i % 2) && (
                   <motion.li
                     custom={i}
-                    variants={ItemAnimation}
+                    variants={TestimonialsAnimation}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
                     transition={{
-                      type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
+                      type: 'spring', stiffness: 300, damping: 30, delay: i / 10,
                     }}
                   >
-                    <ProjectCard />
+                    {item}
                   </motion.li>
                 )
               ))
@@ -119,11 +245,7 @@ const ProjectsContainer = ({ isVisible }) => (
 );
 
 ProjectsContainer.propTypes = {
-  isVisible: PropTypes.bool,
-};
-
-ProjectsContainer.defaultProps = {
-  isVisible: false,
+  currentSection: PropTypes.oneOf(['projects', 'testimonials']).isRequired,
 };
 
 export default ProjectsContainer;

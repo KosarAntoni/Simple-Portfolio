@@ -6,7 +6,8 @@ import Heading from '../../atoms/Heading/Heading';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
-	padding: 1em;
+	padding: 1rem;
+	margin: 1rem;
 	background: ${({ theme }) => theme.white};
 	border-radius: 0.5rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);

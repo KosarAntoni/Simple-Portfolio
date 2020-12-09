@@ -48,14 +48,14 @@ const CloseButton = styled(motion.button)`
   }
 `;
 
-const CardHeading = ({ isSelected, setIsSelected }) => (
+const CardHeading = ({ isSelected, setIsSelected, data }) => (
   <HeadingWrapper
     initial={false}
     isSelected={isSelected}
     layout
     transition={animation}
   >
-    <StyledHeading>Lorem ipsum</StyledHeading>
+    <StyledHeading>{data}</StyledHeading>
     <CloseButton
       onClick={() => setIsSelected(false)}
       isSelected={isSelected}
@@ -68,6 +68,7 @@ const CardHeading = ({ isSelected, setIsSelected }) => (
 CardHeading.propTypes = {
   isSelected: PropTypes.bool,
   setIsSelected: PropTypes.func.isRequired,
+  data: PropTypes.string.isRequired,
 };
 
 CardHeading.defaultProps = {

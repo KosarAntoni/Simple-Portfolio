@@ -24,9 +24,10 @@ const ProjectImage = styled(motion.img)`
   height: 100%;
   width: 100%;
   max-height: 30rem;
+  object-fit: cover;
 `;
 
-const Image = ({ isSelected }) => (
+const Image = ({ isSelected, data }) => (
   <Wrapper
     isSelected={isSelected}
     initial={false}
@@ -34,7 +35,7 @@ const Image = ({ isSelected }) => (
     transition={animation}
   >
     <ProjectImage
-      src="https://picsum.photos/seed/picsum/400/300"
+      src={data}
       alt=""
       initial={false}
     />
@@ -43,6 +44,7 @@ const Image = ({ isSelected }) => (
 
 Image.propTypes = {
   isSelected: PropTypes.bool,
+  data: PropTypes.string.isRequired,
 };
 
 Image.defaultProps = {

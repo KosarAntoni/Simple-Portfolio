@@ -42,61 +42,117 @@ const TestimonialsAnimation = {
 };
 
 const DummyProjects = [
-  <ProjectCard />,
-  <ProjectCard />,
-  <ProjectCard />,
-  <ProjectCard />,
-  <ProjectCard />,
-  <ProjectCard />,
-  <ProjectCard />,
+  {
+    image: 'https://picsum.photos/id/1020/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/102/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/1026/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/1042/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/1047/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/1058/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
+  {
+    image: 'https://picsum.photos/id/1080/400/300',
+    title: 'Lorem ipsum',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+  },
 ];
 
 const DummyTestimonials = [
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
-  <TestimonialCard
-    title="Lorem ipsum"
-    text="Lorem ipsum dolor sit amet"
-    date="1976-04-19T12:59-0500"
-  />,
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Accusamus aliquam',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Accusamus aliquam',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
+  {
+    title: 'Lorem ipsum',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam\n'
+      + 'atque doloribus eos facilis laudantium libero natus odit quas voluptate?',
+    date: '1976-04-19T12:59-0500',
+  },
 ];
 
 const Wrapper = styled.div`
@@ -169,7 +225,7 @@ const ProjectsContainer = ({ currentSection }) => (
                       type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
                     }}
                   >
-                    {item}
+                    <ProjectCard image={item.image} content={item.content} title={item.title} />
                   </motion.li>
                 )
               ))
@@ -189,7 +245,7 @@ const ProjectsContainer = ({ currentSection }) => (
                       type: 'spring', stiffness: 100, damping: 15, delay: getRandom(1, 5) / 10,
                     }}
                   >
-                    {item}
+                    <ProjectCard image={item.image} content={item.content} title={item.title} />
                   </motion.li>
                 )
               ))
@@ -210,10 +266,10 @@ const ProjectsContainer = ({ currentSection }) => (
                     animate="visible"
                     exit="exit"
                     transition={{
-                      type: 'spring', stiffness: 300, damping: 30, delay: i / 10,
+                      type: 'spring', stiffness: 300, damping: 30, delay: i / 20,
                     }}
                   >
-                    {item}
+                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
                   </motion.li>
                 )
               ))
@@ -230,10 +286,10 @@ const ProjectsContainer = ({ currentSection }) => (
                     animate="visible"
                     exit="exit"
                     transition={{
-                      type: 'spring', stiffness: 300, damping: 30, delay: i / 10,
+                      type: 'spring', stiffness: 300, damping: 30, delay: i / 20,
                     }}
                   >
-                    {item}
+                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
                   </motion.li>
                 )
               ))

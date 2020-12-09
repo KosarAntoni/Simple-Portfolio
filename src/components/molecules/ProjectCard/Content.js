@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { animation } from './animation';
 
@@ -9,44 +10,17 @@ const TextWrapper = styled(motion.div)`
   z-index: 0;
 `;
 
-const Content = () => (
+const Content = ({ data }) => (
   <TextWrapper
     layout
     transition={animation}
   >
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam
-      atque doloribus eos facilis laudantium libero natus odit quas voluptate?
-    </Paragraph>
+    <Paragraph>{data}</Paragraph>
   </TextWrapper>
 );
+
+Content.propTypes = {
+  data: PropTypes.string.isRequired,
+};
 
 export default Content;

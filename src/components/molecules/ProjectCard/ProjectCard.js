@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
+import PropTypes from 'prop-types';
 import Image from './Image';
 import Content from './Content';
 import { animation } from './animation';
@@ -84,7 +85,7 @@ const ContentContainer = styled(motion.div)`
   `}
 `;
 
-const ProjectCard = () => {
+const ProjectCard = ({ title, image, content }) => {
   const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
 
@@ -125,13 +126,19 @@ const ProjectCard = () => {
           transition={animation}
           onUpdate={checkZIndex}
         >
-          <Image isSelected={isSelected} />
-          <CardHeading isSelected={isSelected} setIsSelected={setIsSelected} />
-          <Content />
+          <Image isSelected={isSelected} data={image} />
+          <CardHeading isSelected={isSelected} setIsSelected={setIsSelected} data={title} />
+          <Content data={content} />
         </ContentContainer>
       </ContentWrapper>
     </Wrapper>
   );
+};
+
+ProjectCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default ProjectCard;

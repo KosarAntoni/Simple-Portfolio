@@ -7,7 +7,7 @@ import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
 import TestimonialsView from './TestimonialsView';
-import ProjectsContainer from '../components/organisms/ProjectsContainer/ProjectsContainer';
+import CardsContainer from '../components/organisms/CardsContainer/CardsContainer';
 
 const Root = () => {
   const [currentSection, setCurrentSection] = useState('projects');
@@ -20,10 +20,10 @@ const Root = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ProjectsView />
-      {window.innerWidth > 768 && <ProjectsContainer currentSection={currentSection} />}
-      {window.innerWidth <= 768 && <ProjectsContainer currentSection="projects" />}
+      {window.innerWidth > 768 && <CardsContainer currentSection={currentSection} />}
+      {window.innerWidth <= 768 && <CardsContainer currentSection="projects" />}
       <TestimonialsView />
-      {window.innerWidth <= 768 && <ProjectsContainer currentSection="testimonials" />}
+      {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />}
     </ThemeProvider>
   );
 };

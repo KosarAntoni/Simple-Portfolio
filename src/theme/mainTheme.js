@@ -4,7 +4,7 @@ export const theme = {
   white: 'rgb(255, 255, 255)',
   light: 300,
   regular: 400,
-  bold: 700,
+  bold: 500,
   fontSize: {
     xxs: '1rem',
     xs: '1.2rem',

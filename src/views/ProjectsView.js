@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  loremIpsum, fullname,
+} from 'react-lorem-ipsum';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
 
@@ -41,20 +44,18 @@ const ProjectsView = () => (
     <ContentSection>
 
       <div>
-        <Heading big>Some info about me</Heading>
-        <Heading big>and my projects</Heading>
+        <Heading big>
+          {loremIpsum({ avgWordsPerSentence: 5, avgSentencesPerParagraph: 1 })[0]}
+        </Heading>
+        <Heading big>{fullname()}</Heading>
       </div>
 
       <div>
         <Paragraph big>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aut commodi
-          deserunt eos ipsam
-          itaque magnam mollitia quas, tempore.
+          {loremIpsum({ avgSentencesPerParagraph: 4 })[0]}
         </Paragraph>
         <Paragraph big>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, quis, quod. Aliquid
-          corporis facilis
-          fugiat vero!
+          {loremIpsum({ avgSentencesPerParagraph: 6 })[0]}
         </Paragraph>
       </div>
 

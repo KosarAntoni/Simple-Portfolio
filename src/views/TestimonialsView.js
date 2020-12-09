@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { loremIpsum } from 'react-lorem-ipsum';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import Link from '../components/atoms/Link/Link';
@@ -42,15 +43,15 @@ const TestimonialsView = () => (
     <ContentSection>
 
       <div>
-        <Heading big>Testimonials of people</Heading>
-        <Heading big>who are breathtaking</Heading>
+        <Heading big>Testimonials of breathtaking people</Heading>
+        <Heading big>
+          {loremIpsum({ avgWordsPerSentence: 5, avgSentencesPerParagraph: 1 })[0]}
+        </Heading>
       </div>
 
       <div>
         <Paragraph big>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aut commodi
-          deserunt eos ipsam
-          itaque magnam mollitia quas, tempore.
+          {loremIpsum({ avgSentencesPerParagraph: 4 })[0]}
         </Paragraph>
         <Paragraph big>
           Currently working as designer at

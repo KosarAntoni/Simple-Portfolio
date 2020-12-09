@@ -14,13 +14,14 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: ${({ center }) => (center ? 'center' : 'flex-start')};
   width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
   padding: 1rem;
 
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 410px;
     height: 100vh;
     align-items: center;
     padding: 0;

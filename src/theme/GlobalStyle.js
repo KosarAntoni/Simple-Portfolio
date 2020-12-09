@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    font-size: 62.5%;
+    font-size: 50%;
   }
   
   body {
@@ -24,9 +24,9 @@ const GlobalStyle = createGlobalStyle`
   }
   
       @media screen and ${theme.viewPorts.viewport7} {
-        body {
-          font-size: 1.6rem;
-        }
+				html {
+					font-size: 62.5%;
+				}
       }
 
 `;

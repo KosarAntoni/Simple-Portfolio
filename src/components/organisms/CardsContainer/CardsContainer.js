@@ -48,6 +48,7 @@ const RightProjectsColumn = styled.ul`
 const TestimonialsColumn = styled.ul`
   display: flex;
   flex-direction: column;
+  max-width: 50%;
 `;
 
 const CardsContainer = ({ currentSection }) => (

@@ -60,7 +60,7 @@ const ProjectsView = ({ isVisible }) => (
         <Heading
           big
           as={motion.h1}
-          initial={{ y: '0%' }}
+          initial={{ y: '200%' }}
           animate={{ y: isVisible ? '0%' : '200%' }}
           transition={animation}
         >
@@ -73,6 +73,7 @@ const ProjectsView = ({ isVisible }) => (
         <Heading
           big
           as={motion.h1}
+          initial={{ y: '-100%' }}
           animate={{ y: isVisible ? '0%' : '-100%' }}
           transition={animation}
         >
@@ -84,6 +85,7 @@ const ProjectsView = ({ isVisible }) => (
         <Paragraph
           big
           as={motion.p}
+          initial={{ y: '10%', opacity: 0 }}
           animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
           transition={{ ...animation, delay: 0.5 }}
         >
@@ -94,6 +96,7 @@ const ProjectsView = ({ isVisible }) => (
         <Paragraph
           big
           as={motion.p}
+          initial={{ y: '10%', opacity: 0 }}
           animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
           transition={{ ...animation, delay: 0.8 }}
         >

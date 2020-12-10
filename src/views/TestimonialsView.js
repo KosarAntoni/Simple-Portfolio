@@ -50,7 +50,7 @@ const BreakLine = styled.div`
   width: 60%;
   background-color: ${({ theme }) => theme.black};
   border-radius: 50rem;
-  margin: 1rem auto 2rem 0;
+  margin: 0 auto 2rem 0;
 `;
 
 const TestimonialsView = ({ isVisible }) => (

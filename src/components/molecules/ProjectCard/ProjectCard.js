@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import PropTypes from 'prop-types';
@@ -43,6 +43,9 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   
   ${({ isSelected }) => isSelected && css`
     padding: 2rem 1rem;
@@ -83,6 +86,7 @@ const ContentContainer = styled(motion.div)`
 const ProjectCard = ({ title, image, content }) => {
   const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
+  const ref = useRef();
 
   const checkZIndex = (latest) => {
     if (isSelected) {
@@ -90,6 +94,14 @@ const ProjectCard = ({ title, image, content }) => {
     } else if (!isSelected && latest.borderRadius === '100%') {
       zIndex.set(0);
     }
+  };
+
+  const handleClose = () => {
+    ref.current.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    setIsSelected(false);
   };
 
   return (
@@ -101,13 +113,14 @@ const ProjectCard = ({ title, image, content }) => {
         transition={{ duration: 0.2 }}
         style={{ pointerEvents: isSelected ? 'auto' : 'none' }}
       >
-        <Redirect onClick={() => setIsSelected(false)} />
+        <Redirect onClick={handleClose} />
       </Overlay>
       <ContentWrapper
         layout
         isSelected={isSelected}
       >
         <ContentContainer
+          ref={ref}
           initial={false}
           onClick={() => !isSelected && setIsSelected(true)}
           isSelected={isSelected}
@@ -122,7 +135,7 @@ const ProjectCard = ({ title, image, content }) => {
           onUpdate={checkZIndex}
         >
           <Image isSelected={isSelected} data={image} />
-          <CardHeading isSelected={isSelected} setIsSelected={setIsSelected} data={title} />
+          <CardHeading isSelected={isSelected} handleClose={handleClose} data={title} />
           <Content data={content} />
         </ContentContainer>
       </ContentWrapper>

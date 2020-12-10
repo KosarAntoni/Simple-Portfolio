@@ -49,7 +49,7 @@ const BreakLine = styled.div`
   width: 60%;
   background-color: ${({ theme }) => theme.black};
   border-radius: 50rem;
-  margin: 1rem auto 2rem 0;
+  margin: 0 auto 2rem 0;
 `;
 
 const ProjectsView = ({ isVisible }) => (
@@ -60,6 +60,7 @@ const ProjectsView = ({ isVisible }) => (
         <Heading
           big
           as={motion.h1}
+          initial={{ y: '0%' }}
           animate={{ y: isVisible ? '0%' : '200%' }}
           transition={animation}
         >
@@ -89,7 +90,6 @@ const ProjectsView = ({ isVisible }) => (
           Lorem ipsum dolor sit amet consectetur adipiscing elit.
           Amet consectetur adipiscing elit quisque faucibus ex sapien.
           Quisque faucibus ex sapien vitae pellentesque sem placerat.
-          Vitae pellentesque sem placerat in id cursus mi.
         </Paragraph>
         <Paragraph
           big
@@ -102,7 +102,6 @@ const ProjectsView = ({ isVisible }) => (
           Vitae pellentesque sem placerat in id cursus mi.
           Cursus mi pretium tellus duis convallis tempus leo.
           Tempus leo eu aenean sed diam urna tempor.
-          Urna tempor pulvinar vivamus fringilla lacus nec metus.
         </Paragraph>
       </div>
 

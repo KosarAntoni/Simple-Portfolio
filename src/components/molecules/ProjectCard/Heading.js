@@ -48,7 +48,7 @@ const CloseButton = styled(motion.button)`
   }
 `;
 
-const CardHeading = ({ isSelected, setIsSelected, data }) => (
+const CardHeading = ({ isSelected, handleClose, data }) => (
   <HeadingWrapper
     initial={false}
     isSelected={isSelected}
@@ -57,7 +57,7 @@ const CardHeading = ({ isSelected, setIsSelected, data }) => (
   >
     <StyledHeading>{data}</StyledHeading>
     <CloseButton
-      onClick={() => setIsSelected(false)}
+      onClick={handleClose}
       isSelected={isSelected}
     >
       Close
@@ -67,7 +67,7 @@ const CardHeading = ({ isSelected, setIsSelected, data }) => (
 
 CardHeading.propTypes = {
   isSelected: PropTypes.bool,
-  setIsSelected: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
 };
 

@@ -65,7 +65,6 @@ const ContentContainer = styled(motion.div)`
   max-width: 40rem;
   max-height: 100%;
   background: white;
-  margin: auto;
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);

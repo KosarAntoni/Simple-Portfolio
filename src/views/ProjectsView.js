@@ -17,8 +17,10 @@ const Wrapper = styled.div`
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
     display: flex;
     flex-direction: row;
+    align-items: center;
     max-width: 1250px;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
   }  
 `;
 

@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: ${({ center }) => (center ? 'center' : 'flex-start')};
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 1rem;
 

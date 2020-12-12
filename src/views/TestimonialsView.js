@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
-import Link from '../components/atoms/Link/Link';
 
 const animation = { type: 'spring', stiffness: 100, damping: 15 };
 
@@ -104,42 +103,11 @@ const TestimonialsView = ({ isVisible }) => (
           animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
           transition={{ ...animation, delay: 0.8 }}
         >
-          Currently working as designer at
-          {' '}
-          <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
-            color="rgb(162, 0, 224)"
-          >
-            BestWorkEver
-          </Link>
-          ,
-          if you want contact me find me on
-          {' '}
-          <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
-            color="rgb(24, 119, 242)"
-          >
-            Facebook
-          </Link>
-          {' '}
-          or
-          {' '}
-          <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
-            color="rgb(221, 0, 116)"
-          >
-            Instagram
-          </Link>
-          ,
-          and you can also
-          {' '}
-          <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
-            color="rgb(211, 47, 47)"
-          >
-            send me email
-          </Link>
-          .
+          Lorem ipsum dolor sit amet consectetur adipiscing elit.
+          Adipiscing elit quisque faucibus ex sapien vitae pellentesque.
+          Vitae pellentesque sem placerat in id cursus mi.
+          Cursus mi pretium tellus duis convallis tempus leo.
+          Tempus leo eu aenean sed diam urna tempor.
         </Paragraph>
       </div>
 

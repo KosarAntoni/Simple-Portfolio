@@ -110,7 +110,7 @@ const CardsContainer = ({ currentSection }) => (
 );
 
 CardsContainer.propTypes = {
-  currentSection: PropTypes.oneOf(['projects', 'testimonials']).isRequired,
+  currentSection: PropTypes.oneOf(['projects', 'testimonials', 'isLoading']).isRequired,
 };
 
 export default CardsContainer;

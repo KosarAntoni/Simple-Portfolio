@@ -1,28 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import {
-  useViewportScroll,
-} from 'framer-motion';
+import { useViewportScroll } from 'framer-motion';
+import axios from 'axios';
 import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
 import TestimonialsView from './TestimonialsView';
 import CardsContainer from '../components/organisms/CardsContainer/CardsContainer';
+import { DummyProjects } from '../components/organisms/CardsContainer/DummyData';
 
 const Root = () => {
-  const [currentSection, setCurrentSection] = useState('projects');
+  const [currentSection, setCurrentSection] = useState('isLoading');
   const { scrollYProgress } = useViewportScroll();
-  useEffect(() => scrollYProgress.onChange((v) => {
-    setCurrentSection(v >= 0.5 ? 'testimonials' : 'projects');
-  }));
+  const ref = useRef();
+
+  useEffect(() => {
+    scrollYProgress.onChange((v) => {
+      setCurrentSection(v >= 0.5 ? 'testimonials' : 'projects');
+    });
+  });
+
+  useEffect(() => {
+    let count = 0;
+    DummyProjects.forEach((project) => {
+      axios
+        .get(
+          project.image, {
+            responseType: 'blob',
+          },
+        )
+        .then((response) => {
+          const image = new Image();
+          image.src = URL.createObjectURL(response.data);
+          count += 1;
+          if (DummyProjects.length === count) setCurrentSection('projects');
+        });
+    });
+  }, [ref]);
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
       <ProjectsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'projects'} />
-      <CardsContainer currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
-      <TestimonialsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'testimonials'} />
-      {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />}
+      <div ref={ref}>
+        <GlobalStyle />
+        <CardsContainer currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
+        <TestimonialsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'testimonials'} />
+        {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />}
+      </div>
     </ThemeProvider>
   );
 };

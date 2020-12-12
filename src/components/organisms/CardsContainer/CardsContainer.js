@@ -65,6 +65,7 @@ const RightProjectsColumn = styled.ul`
 const TestimonialsColumn = styled.ul`
   display: flex;
   flex-direction: column;
+  width: 50%;
   max-width: 27rem;
   
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 

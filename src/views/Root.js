@@ -41,12 +41,11 @@ const Root = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ProjectsView currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
       <div ref={ref}>
+        <ProjectsView currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
         <GlobalStyle />
         <CardsContainer currentSection={currentSection} />
-        <TestimonialsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'testimonials'} />
-        {/* {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />} */}
+        <TestimonialsView isVisible={window.innerWidth <= 768 ? currentSection !== 'loading' : currentSection === 'testimonials'} />
       </div>
     </ThemeProvider>
   );

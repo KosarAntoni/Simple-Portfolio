@@ -46,9 +46,9 @@ const HeadingWrapper = styled.div`
   overflow: hidden;
 `;
 
-const BreakLine = styled.div`
+const BreakLine = styled(motion.div)`
   height: 4px;
-  width: 30rem;
+  max-width: 30rem;
   background-color: ${({ theme }) => theme.black};
   border-radius: 50rem;
   margin: 0 auto 2rem 0;
@@ -70,7 +70,11 @@ const TestimonialsView = ({ isVisible }) => (
         </Heading
         >
       </HeadingWrapper>
-      <BreakLine />
+      <BreakLine
+        initial={{ width: '0%' }}
+        animate={{ width: isVisible ? '100%' : '0%' }}
+        transition={{ type: 'spring', stiffness: 200, damping: 50 }}
+      />
       <HeadingWrapper>
         <Heading
           big

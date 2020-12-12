@@ -47,15 +47,15 @@ const HeadingWrapper = styled.div`
   overflow: hidden;
 `;
 
-const BreakLine = styled.div`
+const BreakLine = styled(motion.div)`
   height: 4px;
-  width: 60%;
+  max-width: 30rem;
   background-color: ${({ theme }) => theme.black};
   border-radius: 50rem;
   margin: 0 auto 2rem 0;
 `;
 
-const ProjectsView = ({ isVisible }) => (
+const ProjectsView = ({ currentSection }) => (
   <Wrapper>
     <ContentSection>
 
@@ -64,20 +64,24 @@ const ProjectsView = ({ isVisible }) => (
           big
           as={motion.h1}
           initial={{ y: '200%' }}
-          animate={{ y: isVisible ? '0%' : '200%' }}
+          animate={{ y: currentSection === 'projects' || currentSection === 'loading' ? '0%' : '200%' }}
           transition={animation}
         >
           Lorem ipsum dolor sit amet
         </Heading
         >
       </HeadingWrapper>
-      <BreakLine />
+      <BreakLine
+        initial={{ width: '0%' }}
+        animate={{ width: currentSection === 'projects' || currentSection === 'testimonials' ? '100%' : '0%' }}
+        transition={{ type: 'spring', stiffness: 100, damping: 70 }}
+      />
       <HeadingWrapper>
         <Heading
           big
           as={motion.h1}
           initial={{ y: '-100%' }}
-          animate={{ y: isVisible ? '0%' : '-100%' }}
+          animate={{ y: currentSection === 'projects' || currentSection === 'loading' ? '0%' : '-100%' }}
           transition={animation}
         >
           Harry Hill
@@ -89,7 +93,7 @@ const ProjectsView = ({ isVisible }) => (
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
-          animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
+          animate={currentSection === 'projects' ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
           transition={{ ...animation, delay: 0.5 }}
         >
           Lorem ipsum dolor sit amet consectetur adipiscing elit.
@@ -100,7 +104,7 @@ const ProjectsView = ({ isVisible }) => (
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
-          animate={isVisible ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
+          animate={currentSection === 'projects' ? { y: '0%', opacity: 1 } : { y: '10%', opacity: 0 }}
           transition={{ ...animation, delay: 0.8 }}
         >
           Currently working as designer at
@@ -147,11 +151,11 @@ const ProjectsView = ({ isVisible }) => (
 );
 
 ProjectsView.propTypes = {
-  isVisible: PropTypes.bool,
+  currentSection: PropTypes.oneOf(['projects', 'testimonials', 'loading']).isRequired,
 };
 
-ProjectsView.defaultProps = {
-  isVisible: true,
-};
+// ProjectsView.defaultProps = {
+//   currentSection: true,
+// };
 
 export default ProjectsView;

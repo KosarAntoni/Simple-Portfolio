@@ -9,8 +9,12 @@ const Wrapper = styled(motion.div)`
   top: 0;
   left: 0;
   z-index: 3;
-  height: ${({ isSelected }) => (isSelected ? '30rem' : '20rem')};
+  height: ${({ isSelected }) => (isSelected ? '30rem' : '12rem')};
     
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    height: ${({ isSelected }) => (isSelected ? '30rem' : '20rem')};
+  }  
+  
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} { 
     height: ${({ isSelected }) => (isSelected ? '30rem' : '25rem')};
   }

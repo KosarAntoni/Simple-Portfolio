@@ -48,7 +48,7 @@ const HeadingWrapper = styled.div`
 
 const BreakLine = styled.div`
   height: 4px;
-  width: 60%;
+  width: 30rem;
   background-color: ${({ theme }) => theme.black};
   border-radius: 50rem;
   margin: 0 auto 2rem 0;

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: 50%;
+    padding-bottom: 25vh;
   }
   
   body {
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
       @media screen and ${theme.viewPorts.viewport7} {
 				html {
 					font-size: 62.5%;
+					padding-bottom: 0;
 				}
       }
 

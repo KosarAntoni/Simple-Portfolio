@@ -10,7 +10,7 @@ import CardsContainer from '../components/organisms/CardsContainer/CardsContaine
 import { DummyProjects } from '../components/organisms/CardsContainer/DummyData';
 
 const Root = () => {
-  const [currentSection, setCurrentSection] = useState('isLoading');
+  const [currentSection, setCurrentSection] = useState('loading');
   const { scrollYProgress } = useViewportScroll();
   const ref = useRef();
 
@@ -41,12 +41,12 @@ const Root = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ProjectsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'projects'} />
+      <ProjectsView currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
       <div ref={ref}>
         <GlobalStyle />
-        <CardsContainer currentSection={window.innerWidth <= 768 ? 'projects' : currentSection} />
+        <CardsContainer currentSection={currentSection} />
         <TestimonialsView isVisible={window.innerWidth <= 768 ? true : currentSection === 'testimonials'} />
-        {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />}
+        {/* {window.innerWidth <= 768 && <CardsContainer currentSection="testimonials" />} */}
       </div>
     </ThemeProvider>
   );

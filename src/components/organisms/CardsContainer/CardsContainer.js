@@ -9,19 +9,23 @@ import ProjectCardWrapper from './ProjectCardWrapper';
 import TestimonialCardWrapper from './TestiminialCardWrapper';
 
 const Wrapper = styled.div`
+  position: fixed;
+  bottom: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({ center }) => (center ? 'column' : 'row')};
   justify-content: center;
   align-items: ${({ center }) => (center ? 'center' : 'flex-start')};
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   padding: 1rem;
+  z-index: 3;
+  top: ${({ center }) => (center ? 'auto' : '70vh')};
 
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
-    position: fixed;
     top: 0;
     right: 0;
+    flex-direction: row;
+    max-width: 400px;
     height: 100vh;
     align-items: center;
     padding: 0;
@@ -35,21 +39,38 @@ const Wrapper = styled.div`
 `;
 
 const LeftProjectsColumn = styled.ul`
-  margin-right: -1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-bottom: -1rem;
+  
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    margin-bottom: 0;
+    margin-right: -1rem;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const RightProjectsColumn = styled.ul`
-  margin-left: -1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    margin-left: -1rem;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const TestimonialsColumn = styled.ul`
   display: flex;
   flex-direction: column;
   max-width: 50%;
+  
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const CardsContainer = ({ currentSection }) => (
@@ -110,7 +131,7 @@ const CardsContainer = ({ currentSection }) => (
 );
 
 CardsContainer.propTypes = {
-  currentSection: PropTypes.oneOf(['projects', 'testimonials', 'isLoading']).isRequired,
+  currentSection: PropTypes.oneOf(['projects', 'testimonials', 'loading']).isRequired,
 };
 
 export default CardsContainer;

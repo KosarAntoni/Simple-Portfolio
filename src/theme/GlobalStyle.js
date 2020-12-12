@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: 50%;
-    padding-bottom: 25vh;
+    padding-bottom: 30vh;
   }
   
   body {

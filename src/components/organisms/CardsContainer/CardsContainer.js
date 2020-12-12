@@ -12,14 +12,14 @@ const Wrapper = styled.div`
   position: fixed;
   bottom: 0;
   display: flex;
-  flex-direction: ${({ center }) => (center ? 'column' : 'row')};
+  flex-direction: ${({ projects }) => (projects ? 'column' : 'row')};
   justify-content: center;
-  align-items: ${({ center }) => (center ? 'center' : 'flex-start')};
+  align-items: ${({ projects }) => (projects ? 'center' : 'flex-start')};
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
   z-index: 3;
-  top: ${({ center }) => (center ? 'auto' : '70vh')};
+  top: ${({ projects }) => (projects ? 'auto' : '65vh')};
 
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
     top: 0;
@@ -77,7 +77,7 @@ const TestimonialsColumn = styled.ul`
 const CardsContainer = ({ currentSection }) => (
   <AnimatePresence exitBeforeEnter>
     {currentSection === 'projects' && (
-    <Wrapper key="projects" center>
+    <Wrapper key="projects" projects>
       <LeftProjectsColumn>
         {
           DummyProjects.map((item, i) => (

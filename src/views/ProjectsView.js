@@ -7,6 +7,7 @@ import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import Link from '../components/atoms/Link/Link';
 
 const animation = { type: 'spring', stiffness: 100, damping: 15 };
+const headingAnimation = { type: 'spring', stiffness: 200, damping: 50 };
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const Wrapper = styled.div`
   }  
 `;
 
-const ContentSection = styled.div`
+const ContentSection = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +44,7 @@ const ContentSection = styled.div`
   }
 `;
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled(motion.div)`
   overflow: hidden;
 `;
 
@@ -57,9 +58,15 @@ const BreakLine = styled(motion.div)`
 
 const ProjectsView = ({ currentSection }) => (
   <Wrapper>
-    <ContentSection>
+    <ContentSection
+      layout
+      transition={headingAnimation}
+    >
 
-      <HeadingWrapper>
+      <HeadingWrapper
+        layout
+        transition={headingAnimation}
+      >
         <Heading
           big
           as={motion.h1}
@@ -72,11 +79,15 @@ const ProjectsView = ({ currentSection }) => (
         >
       </HeadingWrapper>
       <BreakLine
+        layout
         initial={{ width: '0%' }}
-        animate={{ width: currentSection === 'projects' || currentSection === 'testimonials' ? '100%' : '0%' }}
-        transition={{ type: 'spring', stiffness: 100, damping: 70 }}
+        animate={{ width: currentSection === 'projects' || currentSection === 'loading' ? '100%' : '0%' }}
+        transition={headingAnimation}
       />
-      <HeadingWrapper>
+      <HeadingWrapper
+        layout
+        transition={headingAnimation}
+      >
         <Heading
           big
           as={motion.h1}
@@ -88,6 +99,7 @@ const ProjectsView = ({ currentSection }) => (
         </Heading>
       </HeadingWrapper>
 
+      {currentSection !== 'loading' && (
       <div>
         <Paragraph
           big
@@ -145,6 +157,7 @@ const ProjectsView = ({ currentSection }) => (
           .
         </Paragraph>
       </div>
+      )}
 
     </ContentSection>
   </Wrapper>

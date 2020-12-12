@@ -9,8 +9,8 @@ import CardHeading from './Heading';
 
 const Wrapper = styled.div`
   position: relative;
-  height: 12rem;
-  width: 12rem;
+  height: 14rem;
+  width: 14rem;
   margin: 0.5rem;
    
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 

@@ -21,6 +21,10 @@ const Root = () => {
   });
 
   useEffect(() => {
+    window.onbeforeunload = () => {
+      window.scrollTo(0, 0);
+    };
+
     let count = 0;
     const image = new Image(400, 300);
 

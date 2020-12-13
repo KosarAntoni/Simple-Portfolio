@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Image from './Image';
 import Content from './Content';
 import { animation } from './animation';
@@ -89,10 +90,19 @@ const ContentContainer = styled(motion.div)`
   `}
 `;
 
-const ProjectCard = ({ title, image, content }) => {
+const ProjectCard = ({
+  title, image, content, id,
+}) => {
   const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
   const ref = useRef();
+  const history = useHistory();
+  const match = useRouteMatch('/:id');
+
+  useEffect(() => {
+    if (match && match.params.id === id.toString()) setIsSelected(true);
+    else setIsSelected(false);
+  }, [match, id]);
 
   const checkZIndex = (latest) => {
     if (isSelected) {
@@ -107,7 +117,7 @@ const ProjectCard = ({ title, image, content }) => {
       top: 0,
       behavior: 'smooth',
     });
-    setIsSelected(false);
+    history.goBack();
   };
 
   return (
@@ -128,7 +138,7 @@ const ProjectCard = ({ title, image, content }) => {
         <ContentContainer
           ref={ref}
           initial={false}
-          onClick={() => !isSelected && setIsSelected(true)}
+          onClick={() => history.push(`/${id}`)}
           isSelected={isSelected}
           layout
           style={{ zIndex }}
@@ -150,6 +160,7 @@ const ProjectCard = ({ title, image, content }) => {
 };
 
 ProjectCard.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,

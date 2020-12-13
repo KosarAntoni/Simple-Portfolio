@@ -13,7 +13,9 @@
 * React v16.13.1
 * React-moment
 * Framer motion
+* Styled components
 * Atomic designed
+* React router
 
 #### Backend: 
 
@@ -22,6 +24,8 @@
 
 ## Features
 * Fully responsive
+* Images preload
+* Scroll spy
 
 ## Status
 Project is: _in progress_.

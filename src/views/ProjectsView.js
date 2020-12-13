@@ -122,6 +122,7 @@ const ProjectsView = ({ currentSection }) => (
           Currently working as designer at
           {' '}
           <Link
+            target="_blank"
             href="https://simple-portfolio-by-kosar.netlify.app/"
             color="rgb(162, 0, 224)"
           >
@@ -131,7 +132,8 @@ const ProjectsView = ({ currentSection }) => (
           if you want contact me find me on
           {' '}
           <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
+            target="_blank"
+            href="https://fb.com/"
             color="rgb(24, 119, 242)"
           >
             Facebook
@@ -140,7 +142,8 @@ const ProjectsView = ({ currentSection }) => (
           or
           {' '}
           <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
+            target="_blank"
+            href="https://instagram.com/"
             color="rgb(221, 0, 116)"
           >
             Instagram
@@ -149,7 +152,8 @@ const ProjectsView = ({ currentSection }) => (
           and you can also
           {' '}
           <Link
-            href="https://simple-portfolio-by-kosar.netlify.app/"
+            target="_blank"
+            href="mailto:mail@mail.com"
             color="rgb(211, 47, 47)"
           >
             send me email
@@ -166,9 +170,5 @@ const ProjectsView = ({ currentSection }) => (
 ProjectsView.propTypes = {
   currentSection: PropTypes.oneOf(['projects', 'testimonials', 'loading']).isRequired,
 };
-
-// ProjectsView.defaultProps = {
-//   currentSection: true,
-// };
 
 export default ProjectsView;

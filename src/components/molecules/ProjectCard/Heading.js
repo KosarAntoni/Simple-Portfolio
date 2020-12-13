@@ -26,7 +26,7 @@ const StyledHeading = styled(Heading)`
   margin: 0;
 `;
 
-const CloseButton = styled(motion.button)`
+const CloseButton = styled(motion.a)`
   width: 3rem;
   height: 3rem;
   background: url("${CloseIcon}") no-repeat center;

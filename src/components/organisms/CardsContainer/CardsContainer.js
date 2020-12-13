@@ -77,54 +77,62 @@ const TestimonialsColumn = styled.ul`
 const CardsContainer = ({ currentSection }) => (
   <AnimatePresence exitBeforeEnter>
     {currentSection === 'projects' && (
-    <Wrapper key="projects" projects>
+    <Wrapper
+      key="projects"
+      projects
+    >
       <LeftProjectsColumn>
         {
-          DummyProjects.map((item, i) => (
-            !(i % 2) && (
-            <ProjectCardWrapper i={i} key={item.id}>
-              <ProjectCard image={item.image} content={item.content} title={item.title} />
-            </ProjectCardWrapper>
-            )
-          ))
+              DummyProjects.map(({
+                image, content, title, id,
+              }, i) => (
+                !(i % 2) && (
+                  <ProjectCardWrapper i={i} key={id} id={id}>
+                    <ProjectCard image={image} content={content} title={title} id={id} />
+                  </ProjectCardWrapper>
+                )
+              ))
             }
       </LeftProjectsColumn>
       <RightProjectsColumn>
         {
-          DummyProjects.map((item, i) => (
-            !!(i % 2) && (
-            <ProjectCardWrapper i={i} key={item.id}>
-              <ProjectCard image={item.image} content={item.content} title={item.title} />
-            </ProjectCardWrapper>
-            )
-          ))
-}
+              DummyProjects.map(({
+                image, content, title, id,
+              }, i) => (
+                !!(i % 2) && (
+                  <ProjectCardWrapper i={i} key={id} id={id}>
+                    <ProjectCard image={image} content={content} title={title} id={id} />
+                  </ProjectCardWrapper>
+                )
+              ))
+            }
       </RightProjectsColumn>
+
     </Wrapper>
     )}
     {currentSection === 'testimonials' && (
     <Wrapper key="testimonials">
       <TestimonialsColumn>
         {
-          DummyTestimonials.map((item, i) => (
-            !(i % 2) && (
-            <TestimonialCardWrapper i={i} key={item.id}>
-              <TestimonialCard date={item.date} text={item.text} title={item.title} />
-            </TestimonialCardWrapper>
-            )
-          ))
+              DummyTestimonials.map((item, i) => (
+                !(i % 2) && (
+                  <TestimonialCardWrapper i={i} key={item.id}>
+                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
+                  </TestimonialCardWrapper>
+                )
+              ))
             }
       </TestimonialsColumn>
       <TestimonialsColumn>
         {
-          DummyTestimonials.map((item, i) => (
-            !!(i % 2) && (
-            <TestimonialCardWrapper i={i} key={item.id}>
-              <TestimonialCard date={item.date} text={item.text} title={item.title} />
-            </TestimonialCardWrapper>
-            )
-          ))
-}
+              DummyTestimonials.map((item, i) => (
+                !!(i % 2) && (
+                  <TestimonialCardWrapper i={i} key={item.id}>
+                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
+                  </TestimonialCardWrapper>
+                )
+              ))
+            }
       </TestimonialsColumn>
     </Wrapper>
     )}

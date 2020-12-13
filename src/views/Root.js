@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useViewportScroll } from 'framer-motion';
 import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
@@ -45,7 +46,7 @@ const Root = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div ref={ref}>
+      <BrowserRouter ref={ref}>
         <ProjectsView
           currentSection={currentSection}
           setCurrentSection={setCurrentSection}
@@ -53,7 +54,7 @@ const Root = () => {
         <GlobalStyle />
         <CardsContainer currentSection={currentSection} />
         <TestimonialsView isVisible={currentSection === 'testimonials'} />
-      </div>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

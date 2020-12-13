@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRouteMatch } from 'react-router-dom';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -23,7 +24,13 @@ const ProjectsAnimation = {
   },
 };
 
-const ProjectCardWrapper = ({ i, children }) => (
+const ProjectCardWrapper = ({ i, children, id }) => {
+  const match = useRouteMatch('/:id');
+
+  return (
+    <>
+      {
+				match && match.params.id !== id.toString() ? (
   <motion.li
     custom={i}
     variants={ProjectsAnimation}
@@ -34,10 +41,20 @@ const ProjectCardWrapper = ({ i, children }) => (
   >
     {children}
   </motion.li>
-);
+				) : (
+  <motion.li>
+    {children}
+  </motion.li>
+				)
+
+			}
+    </>
+  );
+};
 
 ProjectCardWrapper.propTypes = {
   i: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

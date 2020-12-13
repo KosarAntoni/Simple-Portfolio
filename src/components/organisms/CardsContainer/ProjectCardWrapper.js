@@ -30,7 +30,11 @@ const ProjectCardWrapper = ({ i, children, id }) => {
   return (
     <>
       {
-				match && match.params.id !== id.toString() ? (
+				match && match.params.id === id.toString() ? (
+  <motion.li>
+    {children}
+  </motion.li>
+				) : (
   <motion.li
     custom={i}
     variants={ProjectsAnimation}
@@ -39,10 +43,6 @@ const ProjectCardWrapper = ({ i, children, id }) => {
     exit="exit"
     transition={{ ...ProjectsAnimation.transition, delay: getRandom(1, 5) / 10 }}
   >
-    {children}
-  </motion.li>
-				) : (
-  <motion.li>
     {children}
   </motion.li>
 				)

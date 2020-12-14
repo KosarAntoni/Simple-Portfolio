@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
-import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
-import TestimonialCard from '../../molecules/TestimonialCard/TestimonialCard';
-import { DummyProjects, DummyTestimonials } from './DummyData';
-import ProjectCardWrapper from './ProjectCardWrapper';
-import TestimonialCardWrapper from './TestiminialCardWrapper';
+import { DummyProjects, DummyTestimonials } from '../../data/DummyData';
+import ProjectItem from './ProjectItem';
+import TestimonialItem from './TestiminialItem';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -82,30 +80,18 @@ const CardsContainer = ({ currentSection }) => (
       projects
     >
       <LeftProjectsColumn>
-        {
-              DummyProjects.map(({
-                image, content, title, id,
-              }, i) => (
-                !(i % 2) && (
-                  <ProjectCardWrapper i={i} key={id} id={id}>
-                    <ProjectCard image={image} content={content} title={title} id={id} />
-                  </ProjectCardWrapper>
-                )
-              ))
-            }
+        {DummyProjects.map((item, i) => (
+          !(i % 2) && (
+          <ProjectItem i={i} key={item.id} item={item} />
+          )
+        ))}
       </LeftProjectsColumn>
       <RightProjectsColumn>
-        {
-              DummyProjects.map(({
-                image, content, title, id,
-              }, i) => (
-                !!(i % 2) && (
-                  <ProjectCardWrapper i={i} key={id} id={id}>
-                    <ProjectCard image={image} content={content} title={title} id={id} />
-                  </ProjectCardWrapper>
-                )
-              ))
-            }
+        {DummyProjects.map((item, i) => (
+          !!(i % 2) && (
+            <ProjectItem i={i} key={item.id} item={item} />
+          )
+        ))}
       </RightProjectsColumn>
 
     </Wrapper>
@@ -113,26 +99,18 @@ const CardsContainer = ({ currentSection }) => (
     {currentSection === 'testimonials' && (
     <Wrapper key="testimonials">
       <TestimonialsColumn>
-        {
-              DummyTestimonials.map((item, i) => (
-                !(i % 2) && (
-                  <TestimonialCardWrapper i={i} key={item.id}>
-                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
-                  </TestimonialCardWrapper>
-                )
-              ))
-            }
+        {DummyTestimonials.map((item, i) => (
+          !(i % 2) && (
+          <TestimonialItem i={i} key={item.id} item={item} />
+          )
+        ))}
       </TestimonialsColumn>
       <TestimonialsColumn>
-        {
-              DummyTestimonials.map((item, i) => (
-                !!(i % 2) && (
-                  <TestimonialCardWrapper i={i} key={item.id}>
-                    <TestimonialCard date={item.date} text={item.text} title={item.title} />
-                  </TestimonialCardWrapper>
-                )
-              ))
-            }
+        {DummyTestimonials.map((item, i) => (
+          !!(i % 2) && (
+            <TestimonialItem i={i} key={item.id} item={item} />
+          )
+        ))}
       </TestimonialsColumn>
     </Wrapper>
     )}

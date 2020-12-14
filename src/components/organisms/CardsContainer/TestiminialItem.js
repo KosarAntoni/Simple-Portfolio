@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
+import TestimonialCard from '../../molecules/TestimonialCard/TestimonialCard';
 
 const TestimonialsAnimation = {
   visible: {
@@ -23,7 +24,7 @@ const TestimonialsAnimation = {
   },
 };
 
-const TestimonialCardWrapper = ({ i, children }) => (
+const TestimonialItem = ({ i, item }) => (
   <motion.li
     custom={i}
     variants={TestimonialsAnimation}
@@ -34,16 +35,13 @@ const TestimonialCardWrapper = ({ i, children }) => (
       ...TestimonialsAnimation.transition, delay: i / 20,
     }}
   >
-    {children}
+    <TestimonialCard date={item.date} text={item.text} title={item.title} />
   </motion.li>
 );
 
-TestimonialCardWrapper.propTypes = {
+TestimonialItem.propTypes = {
   i: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  item: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
 };
 
-export default TestimonialCardWrapper;
+export default TestimonialItem;

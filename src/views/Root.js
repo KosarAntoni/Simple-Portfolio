@@ -7,8 +7,8 @@ import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
 import TestimonialsView from './TestimonialsView';
-import CardsContainer from '../components/organisms/CardsContainer/CardsContainer';
-import { DummyProjects } from '../components/organisms/CardsContainer/DummyData';
+import CardsContainer from '../components/organisms/CardsContainer';
+import { DummyProjects } from '../components/data/DummyData';
 
 const Root = () => {
   const [currentSection, setCurrentSection] = useState('loading');

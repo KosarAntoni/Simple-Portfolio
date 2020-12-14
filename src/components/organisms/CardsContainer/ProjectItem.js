@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouteMatch } from 'react-router-dom';
+import ProjectCard from '../../molecules/ProjectCard';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -24,15 +25,21 @@ const ProjectsAnimation = {
   },
 };
 
-const ProjectCardWrapper = ({ i, children, id }) => {
+const ProjectItem = ({ i, item }) => {
   const match = useRouteMatch('/:id');
 
   return (
     <>
       {
-				match && match.params.id === id.toString() ? (
+				match && match.params.id === item.id.toString() ? (
   <motion.li>
-    {children}
+    <ProjectCard
+      image={item.image}
+      content={item.content}
+      title={item.title}
+      id={item.id}
+      isSelected
+    />
   </motion.li>
 				) : (
   <motion.li
@@ -43,22 +50,17 @@ const ProjectCardWrapper = ({ i, children, id }) => {
     exit="exit"
     transition={{ ...ProjectsAnimation.transition, delay: getRandom(1, 5) / 10 }}
   >
-    {children}
+    <ProjectCard image={item.image} content={item.content} title={item.title} id={item.id} />
   </motion.li>
 				)
-
 			}
     </>
   );
 };
 
-ProjectCardWrapper.propTypes = {
+ProjectItem.propTypes = {
   i: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  item: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
 };
 
-export default ProjectCardWrapper;
+export default ProjectItem;

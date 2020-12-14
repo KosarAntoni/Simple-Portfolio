@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Image from './Image';
 import Content from './Content';
 import { animation } from './animation';
@@ -91,18 +91,11 @@ const ContentContainer = styled(motion.div)`
 `;
 
 const ProjectCard = ({
-  title, image, content, id,
+  title, image, content, id, isSelected,
 }) => {
-  const [isSelected, setIsSelected] = useState(false);
   const zIndex = useMotionValue(isSelected ? 2 : 0);
   const ref = useRef();
   const history = useHistory();
-  const match = useRouteMatch('/:id');
-
-  useEffect(() => {
-    if (match && match.params.id === id.toString()) setIsSelected(true);
-    else setIsSelected(false);
-  }, [match, id]);
 
   const checkZIndex = (latest) => {
     if (isSelected) {
@@ -164,6 +157,11 @@ ProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool,
+};
+
+ProjectCard.defaultProps = {
+  isSelected: false,
 };
 
 export default ProjectCard;

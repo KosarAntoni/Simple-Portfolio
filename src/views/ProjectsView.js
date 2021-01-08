@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import Heading from '../components/atoms/Heading/Heading';
-import Paragraph from '../components/atoms/Paragraph/Paragraph';
-import Link from '../components/atoms/Link/Link';
+import Heading from '../components/Heading/Heading';
+import Paragraph from '../components/Paragraph/Paragraph';
+import Link from '../components/Link/Link';
 
 const animation = { type: 'spring', stiffness: 100, damping: 15 };
 const headingAnimation = { type: 'spring', stiffness: 200, damping: 50 };

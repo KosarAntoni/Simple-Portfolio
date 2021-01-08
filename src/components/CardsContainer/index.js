@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { DummyProjects, DummyTestimonials } from '../../data/DummyData';
 import ProjectItem from './ProjectItem';
@@ -16,7 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
-  z-index: 3;
+  z-index: ${({ isVisible }) => (isVisible ? 3 : 0)};
   top: ${({ projects }) => (projects ? 'auto' : '65vh')};
 
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
@@ -73,48 +72,47 @@ const TestimonialsColumn = styled.ul`
 `;
 
 const CardsContainer = ({ currentSection }) => (
-  <AnimatePresence exitBeforeEnter>
-    {currentSection === 'projects' && (
+  <>
+    <Wrapper
+      key="testimonials"
+      isVisible={currentSection === 'testimonials'}
+    >
+      <TestimonialsColumn>
+        {DummyTestimonials.map((item, i) => (
+          !(i % 2) && (
+          <TestimonialItem i={i} key={item.id} item={item} isVisible={currentSection === 'testimonials'} />
+          )
+        ))}
+      </TestimonialsColumn>
+      <TestimonialsColumn>
+        {DummyTestimonials.map((item, i) => (
+          !!(i % 2) && (
+            <TestimonialItem i={i} key={item.id} item={item} isVisible={currentSection === 'testimonials'} />
+          )
+        ))}
+      </TestimonialsColumn>
+    </Wrapper>
     <Wrapper
       key="projects"
       projects
+      isVisible={currentSection === 'projects'}
     >
       <LeftProjectsColumn>
         {DummyProjects.map((item, i) => (
           !(i % 2) && (
-          <ProjectItem i={i} key={item.id} item={item} />
+          <ProjectItem i={i} key={item.id} item={item} isVisible={currentSection === 'projects'} />
           )
         ))}
       </LeftProjectsColumn>
       <RightProjectsColumn>
         {DummyProjects.map((item, i) => (
           !!(i % 2) && (
-            <ProjectItem i={i} key={item.id} item={item} />
+          <ProjectItem i={i} key={item.id} item={item} isVisible={currentSection === 'projects'} />
           )
         ))}
       </RightProjectsColumn>
-
     </Wrapper>
-    )}
-    {currentSection === 'testimonials' && (
-    <Wrapper key="testimonials">
-      <TestimonialsColumn>
-        {DummyTestimonials.map((item, i) => (
-          !(i % 2) && (
-          <TestimonialItem i={i} key={item.id} item={item} />
-          )
-        ))}
-      </TestimonialsColumn>
-      <TestimonialsColumn>
-        {DummyTestimonials.map((item, i) => (
-          !!(i % 2) && (
-            <TestimonialItem i={i} key={item.id} item={item} />
-          )
-        ))}
-      </TestimonialsColumn>
-    </Wrapper>
-    )}
-  </AnimatePresence>
+  </>
 );
 
 CardsContainer.propTypes = {

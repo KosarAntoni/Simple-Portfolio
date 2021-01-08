@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
+import Paragraph from '../Paragraph/Paragraph';
 import { animation } from './animation';
 
 const TextWrapper = styled(motion.div)`

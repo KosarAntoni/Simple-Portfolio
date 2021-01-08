@@ -2,7 +2,7 @@
 
 ## Table of contents
 * [Technologies](#technologies)
-* [Setup](#setup)
+* [Live](#live)
 * [Features](#features)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
@@ -10,16 +10,15 @@
 ## Technologies
 #### Frontend: 
 >hosted by [netlify](https://www.netlify.com/)
-* React v16.13.1
+* React
 * React-moment
 * Framer motion
 * Styled components
-* Atomic designed
 * React router
 
 #### Backend: 
 
-## Setup
+## Live
 #### [Link to live](https://simple-portfolio-by-kosar.netlify.app/) <br/>
 
 ## Features

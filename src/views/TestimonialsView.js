@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import Heading from '../components/atoms/Heading/Heading';
-import Paragraph from '../components/atoms/Paragraph/Paragraph';
+import Heading from '../components/Heading/Heading';
+import Paragraph from '../components/Paragraph/Paragraph';
 
 const animation = { type: 'spring', stiffness: 100, damping: 15 };
 

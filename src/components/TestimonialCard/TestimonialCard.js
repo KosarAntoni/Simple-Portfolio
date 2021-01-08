@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
-import Heading from '../../atoms/Heading/Heading';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
+import Heading from '../Heading/Heading';
+import Paragraph from '../Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
 	padding: 1rem;

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from '../../../assets/times-solid.svg';
+import CloseIcon from '../../assets/times-solid.svg';
 import { animation } from './animation';
-import Heading from '../../atoms/Heading/Heading';
+import Heading from '../Heading/Heading';
 
 const HeadingWrapper = styled(motion.div)`
   position: absolute;

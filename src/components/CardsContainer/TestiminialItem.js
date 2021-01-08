@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import TestimonialCard from '../../molecules/TestimonialCard/TestimonialCard';
+import TestimonialCard from '../TestimonialCard/TestimonialCard';
 
 const TestimonialsAnimation = {
   visible: {
@@ -24,15 +24,15 @@ const TestimonialsAnimation = {
   },
 };
 
-const TestimonialItem = ({ i, item }) => (
+const TestimonialItem = ({ i, item, isVisible }) => (
   <motion.li
     custom={i}
     variants={TestimonialsAnimation}
     initial="hidden"
-    animate="visible"
+    animate={isVisible ? 'visible' : 'exit'}
     exit="exit"
     transition={{
-      ...TestimonialsAnimation.transition, delay: i / 20,
+      ...TestimonialsAnimation.transition, delay: isVisible ? (i / 20) + 1 : i / 20,
     }}
   >
     <TestimonialCard date={item.date} text={item.text} title={item.title} />
@@ -40,8 +40,12 @@ const TestimonialItem = ({ i, item }) => (
 );
 
 TestimonialItem.propTypes = {
+  isVisible: PropTypes.bool,
   i: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   item: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
 };
 
+TestimonialItem.defaultProps = {
+  isVisible: false,
+};
 export default TestimonialItem;

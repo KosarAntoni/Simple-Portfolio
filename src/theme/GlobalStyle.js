@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { theme } from './mainTheme';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -15,22 +14,14 @@ const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    font-size: 50%;
-    padding-bottom: 30vh;
+    font-size: 62.5%;
   }
   
   body {
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif; 
+    width: 100%;
   }
-  
-      @media screen and ${theme.viewPorts.viewport7} {
-				html {
-					font-size: 62.5%;
-					padding-bottom: 0;
-				}
-      }
-
 `;
 
 export default GlobalStyle;

@@ -33,35 +33,25 @@ const Overlay = styled(motion.div)`
 	left: 0;
 	bottom: 0;
 	width: 100vw;
-	background: rgba(0,0,0, 0.4);
-	z-index: 1;
-`;
-
-const Redirect = styled.a`
-  display: block;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100vw;
-  cursor: pointer;
+    cursor: pointer;
+    visibility: ${({ isSelected }) => (isSelected ? 'visible' : 'hidden')};
 `;
 
 const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
-  pointer-events: auto;
   display: flex;
   justify-content: center;
   align-content: center;
-  
+  background: rgba(0,0,0, 0);
+
   ${({ isSelected }) => isSelected && css`
-    padding: 2rem 1rem;
     position: fixed;
-    pointer-events: none;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
+    background: rgba(0,0,0, 0.4);
   `}
 `;
 
@@ -76,10 +66,11 @@ const ContentContainer = styled(motion.div)`
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
+  z-index: 5;
   
   ${({ isSelected }) => isSelected && css`
+    padding: 2rem 1rem;
     overflow-y: scroll;
-    pointer-events: auto;
     cursor: initial;
     
     -ms-overflow-style: none;  /* IE and Edge */
@@ -99,39 +90,49 @@ const ProjectCard = ({
 
   const checkZIndex = (latest) => {
     if (isSelected) {
-      zIndex.set(2);
+      zIndex.set(10);
     } else if (!isSelected && latest.borderRadius === '100%') {
       zIndex.set(0);
     }
   };
 
+  const handleOpen = () => {
+    const { scrollY } = window;
+
+    history.push(`/${id}`);
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+  };
+
   const handleClose = () => {
+    const scrollY = parseInt(document.body.style.top, 10);
+
     ref.current.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-    history.goBack();
+    history.replace('/');
+
+    document.body.style.position = '';
+    document.body.style.top = '';
+    window.scrollTo(0, -(scrollY || 0));
   };
 
   return (
     <Wrapper>
-      <Overlay
-        initial={false}
-        isSelected={isSelected}
-        animate={{ opacity: isSelected ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        style={{ pointerEvents: isSelected ? 'auto' : 'none' }}
-      >
-        <Redirect onClick={handleClose} />
-      </Overlay>
       <ContentWrapper
         layout
         isSelected={isSelected}
       >
+        <Overlay
+          isSelected={isSelected}
+          onClick={handleClose}
+        />
         <ContentContainer
           ref={ref}
           initial={false}
-          onClick={() => history.push(`/${id}`)}
+          onClick={isSelected ? null : handleOpen}
           isSelected={isSelected}
           layout
           style={{ zIndex }}

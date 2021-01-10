@@ -26,12 +26,12 @@ const StyledHeading = styled(Heading)`
   margin: 0;
 `;
 
-const CloseButton = styled(motion.a)`
+const CloseButton = styled.button`
   width: 3rem;
   height: 3rem;
   background: url("${CloseIcon}") no-repeat center;
   background-size: 40%;
-  color: transparent;
+  font-size: 0;
   border: none;
   cursor: pointer;
   border-radius: 10rem;
@@ -39,8 +39,8 @@ const CloseButton = styled(motion.a)`
   transition: box-shadow 0.2s, transform 0.3s;
   
   :hover {
-      box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
-      transform: scale(1.1);
+    box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
+    transform: scale(1.1);
   }
   
   :focus {
@@ -58,7 +58,6 @@ const CardHeading = ({ isSelected, handleClose, data }) => (
     <StyledHeading>{data}</StyledHeading>
     <CloseButton
       onClick={handleClose}
-      isSelected={isSelected}
     >
       Close
     </CloseButton>

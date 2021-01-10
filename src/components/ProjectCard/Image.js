@@ -4,42 +4,34 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { animation } from './animation';
 
-const Wrapper = styled(motion.div)`
+const ProjectImage = styled(motion.img)`
   position: absolute;
   top: 0;
   left: 0;
   z-index: 3;
   height: ${({ isSelected }) => (isSelected ? '30rem' : '14.5rem')};
-    
-  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
+  width: 100%;
+  max-height: 30rem;
+  object-fit: cover;
+
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} {
     height: ${({ isSelected }) => (isSelected ? '30rem' : '20rem')};
-  }  
-  
-  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} { 
+  }
+
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} {
     height: ${({ isSelected }) => (isSelected ? '30rem' : '25rem')};
   }
 `;
 
-const ProjectImage = styled(motion.img)`
-  height: 100%;
-  width: 100%;
-  max-height: 30rem;
-  object-fit: cover;
-`;
-
 const Image = ({ isSelected, data }) => (
-  <Wrapper
-    isSelected={isSelected}
+  <ProjectImage
+    src={data}
+    alt=""
     initial={false}
+    isSelected={isSelected}
     layout
     transition={animation}
-  >
-    <ProjectImage
-      src={data}
-      alt=""
-      initial={false}
-    />
-  </Wrapper>
+  />
 );
 
 Image.propTypes = {

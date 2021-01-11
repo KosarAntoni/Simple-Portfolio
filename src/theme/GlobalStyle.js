@@ -14,16 +14,25 @@ const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    font-size: 62.5%;
+    font-size: 55%;
+    padding-bottom: 26rem;
   }
   
   body {
     font-size: 1.4rem;
-    font-family: "Roboto", sans-serif; 
+    font-family: "Roboto", sans-serif;
     width: 100%;
     background-color:${({ theme }) => theme.backgroundMain};
     color: ${({ theme }) => theme.black};
   }
+  
+  @media screen and ${({ theme }) => theme.viewPorts.viewport7} {
+    html {
+      font-size: 62.5%;
+      padding-bottom: 0;
+    }
+  }
+
 `;
 
 export default GlobalStyle;

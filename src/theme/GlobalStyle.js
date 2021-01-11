@@ -21,6 +21,8 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.4rem;
     font-family: "Roboto", sans-serif; 
     width: 100%;
+    background-color:${({ theme }) => theme.backgroundMain};
+    color: ${({ theme }) => theme.black};
   }
 `;
 

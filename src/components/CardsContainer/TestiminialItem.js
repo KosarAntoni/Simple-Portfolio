@@ -28,7 +28,7 @@ const TestimonialItem = ({ i, item, isVisible }) => (
   <motion.li
     custom={i}
     variants={TestimonialsAnimation}
-    initial="hidden"
+    initial="false"
     animate={isVisible ? 'visible' : 'exit'}
     exit="exit"
     transition={{

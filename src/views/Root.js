@@ -4,13 +4,14 @@ import { useViewportScroll } from 'framer-motion';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from '../theme/GlobalStyle';
-import { theme } from '../theme/mainTheme';
+import { themeLight, themeDark } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
 import TestimonialsView from './TestimonialsView';
 import CardsContainer from '../components/CardsContainer';
 import { DummyProjects } from '../data/DummyData';
 
 const Root = () => {
+  const [theme, setTheme] = useState(themeLight);
   const [currentSection, setCurrentSection] = useState('loading');
   const { scrollYProgress } = useViewportScroll();
   const ref = useRef();
@@ -22,6 +23,19 @@ const Root = () => {
   });
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const changeTheme = () => {
+      if (media.matches) {
+        setTheme(themeDark);
+      } else {
+        setTheme(themeLight);
+      }
+    };
+
+    media.addEventListener('change', changeTheme, false);
+    changeTheme();
+
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
@@ -42,7 +56,7 @@ const Root = () => {
           if (DummyProjects.length === count) setCurrentSection('projects');
         });
     });
-  }, [ref]);
+  }, [ref, theme]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -96,8 +96,8 @@ const ProjectsView = ({ currentSection }) => (
         <Heading
           big
           as={motion.h1}
-          initial={{ y: '-100%' }}
-          animate={{ y: currentSection === 'projects' || currentSection === 'loading' ? '0%' : '-100%' }}
+          initial={{ y: '-200%' }}
+          animate={{ y: currentSection === 'projects' || currentSection === 'loading' ? '0%' : '-200%' }}
           transition={animation}
         >
           Harry Hill

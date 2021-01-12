@@ -84,8 +84,8 @@ const TestimonialsView = ({ isVisible }) => (
         <Heading
           big
           as={motion.h1}
-          initial={{ y: '-100%' }}
-          animate={{ y: isVisible ? '0%' : '-100%' }}
+          initial={{ y: '-200%' }}
+          animate={{ y: isVisible ? '0%' : '-200%' }}
           transition={animation}
         >
           Lorem ipsum dolor sit amet

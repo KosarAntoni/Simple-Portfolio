@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
 import React from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useRouteMatch } from 'react-router-dom';
+import styled from 'styled-components';
 import ProjectCard from '../ProjectCard';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -25,6 +26,14 @@ const animation = {
   },
 };
 
+const Wrapper = styled(motion.li)`
+  margin: 0.5rem;
+
+  @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} {
+    margin: 1rem;
+  }
+`;
+
 const ProjectItem = ({ i, item, isVisible }) => {
   const match = useRouteMatch('/:id');
 
@@ -32,7 +41,7 @@ const ProjectItem = ({ i, item, isVisible }) => {
     <>
       {
                 match && match.params.id === item.id.toString() ? (
-                  <motion.li>
+                  <Wrapper>
                     <ProjectCard
                       image={item.image}
                       content={item.content}
@@ -40,9 +49,9 @@ const ProjectItem = ({ i, item, isVisible }) => {
                       id={item.id}
                       isSelected
                     />
-                  </motion.li>
+                  </Wrapper>
                 ) : (
-                  <motion.li
+                  <Wrapper
                     custom={i}
                     variants={animation}
                     initial="hidden"
@@ -58,7 +67,7 @@ const ProjectItem = ({ i, item, isVisible }) => {
                       title={item.title}
                       id={item.id}
                     />
-                  </motion.li>
+                  </Wrapper>
                 )
             }
     </>

@@ -1,7 +1,7 @@
 export const themeLight = {
-  black: 'rgb(32, 33, 36)',
+  primary: 'rgb(32, 33, 36)',
   grey: 'rgb(66, 66, 66)',
-  white: 'rgb(255, 255, 255)',
+  background: 'rgb(255, 255, 255)',
   backgroundMain: 'rgb(255, 254, 253)',
   light: 300,
   regular: 400,
@@ -24,9 +24,9 @@ export const themeLight = {
 };
 
 export const themeDark = {
-  black: 'rgb(235, 235, 235)',
+  primary: 'rgb(235, 235, 235)',
   grey: 'rgb(175, 175, 175)',
-  white: 'rgb(32, 33, 36)',
+  background: 'rgb(32, 33, 36)',
   backgroundMain: 'rgb(12, 12, 12)',
   light: 300,
   regular: 400,

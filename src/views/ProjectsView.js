@@ -46,14 +46,19 @@ const ContentSection = styled(motion.div)`
 
 const HeadingWrapper = styled(motion.div)`
   overflow: hidden;
+  padding: 2rem 0;
 `;
 
 const BreakLine = styled(motion.div)`
   height: 4px;
   max-width: 30rem;
-  background-color: ${({ theme }) => theme.black};
+  background-color: ${({ theme }) => theme.primary};
   border-radius: 50rem;
-  margin: 0 auto 2rem 0;
+  margin-right: auto;
+`;
+
+const StyledParagraph = styled(Paragraph)`
+  margin-bottom: ${({ theme }) => theme.fontSize.l};
 `;
 
 const ProjectsView = ({ currentSection }) => (
@@ -101,7 +106,7 @@ const ProjectsView = ({ currentSection }) => (
 
       {currentSection !== 'loading' && (
       <div>
-        <Paragraph
+        <StyledParagraph
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
@@ -111,8 +116,8 @@ const ProjectsView = ({ currentSection }) => (
           Lorem ipsum dolor sit amet consectetur adipiscing elit.
           Amet consectetur adipiscing elit quisque faucibus ex sapien.
           Quisque faucibus ex sapien vitae pellentesque sem placerat.
-        </Paragraph>
-        <Paragraph
+        </StyledParagraph>
+        <StyledParagraph
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
@@ -159,7 +164,7 @@ const ProjectsView = ({ currentSection }) => (
             send me email
           </Link>
           .
-        </Paragraph>
+        </StyledParagraph>
       </div>
       )}
 

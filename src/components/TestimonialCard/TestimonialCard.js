@@ -5,36 +5,40 @@ import PropTypes from 'prop-types';
 import Heading from '../Heading/Heading';
 import Paragraph from '../Paragraph/Paragraph';
 
-const StyledWrapper = styled.div`
-	padding: 1rem;
-	margin: 1rem;
-	background: ${({ theme }) => theme.white};
-	border-radius: 0.5rem;
+const Wrapper = styled.div`
+  padding: 1rem;
+  background: ${({ theme }) => theme.background};
+  border-radius: 0.5rem;
   box-shadow: 0 4px 0.75rem rgba(0, 0, 0, .2);
 `;
 
-const StyledHeadingWrapper = styled.div`
+const HeadingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.fontSize.xs};
 `;
 
-const StyledQuotes = styled.span`
+const Quotes = styled.span`
   font-size: 2em;
   line-height: 0.8em;
   font-family: 'Passion One', cursive;
 `;
 
+const StyledParagraph = styled(Paragraph)`
+  margin-bottom: ${({ theme }) => theme.fontSize.xs};
+`;
+
 const TestimonialCard = ({ title, text, date }) => (
-  <StyledWrapper>
-    <StyledHeadingWrapper>
+  <Wrapper>
+    <HeadingWrapper>
       <Heading>
         {title}
       </Heading>
-      <StyledQuotes>&quot;</StyledQuotes>
-    </StyledHeadingWrapper>
-    <Paragraph>{text}</Paragraph>
+      <Quotes>&quot;</Quotes>
+    </HeadingWrapper>
+    <StyledParagraph>{text}</StyledParagraph>
     <Heading as={Moment} format="DD MMMM YYYY">{date}</Heading>
-  </StyledWrapper>
+  </Wrapper>
 );
 
 TestimonialCard.propTypes = {

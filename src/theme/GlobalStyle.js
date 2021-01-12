@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Roboto", sans-serif;
     width: 100%;
     background-color:${({ theme }) => theme.backgroundMain};
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.primary};
   }
   
   @media screen and ${({ theme }) => theme.viewPorts.viewport7} {

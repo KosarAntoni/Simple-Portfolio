@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
 import React from 'react';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
 
@@ -19,8 +20,12 @@ const animation = {
   },
 };
 
+const Wrapper = styled(motion.li)`
+  margin: 1rem;
+`;
+
 const TestimonialItem = ({ i, item, isVisible }) => (
-  <motion.li
+  <Wrapper
     variants={animation}
     initial="exit"
     animate={isVisible ? 'visible' : 'exit'}
@@ -30,7 +35,7 @@ const TestimonialItem = ({ i, item, isVisible }) => (
     }}
   >
     <TestimonialCard date={item.date} text={item.text} title={item.title} />
-  </motion.li>
+  </Wrapper>
 );
 
 TestimonialItem.propTypes = {

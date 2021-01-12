@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Link = styled.a`
-	display: inline-block;
+  display: inline-block;
   position: relative;
   text-decoration: none;
   transition: all 0.3s;
@@ -23,7 +23,7 @@ const Link = styled.a`
   }
   
   :hover {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.background};
   }
   
   :hover::before {

@@ -42,16 +42,21 @@ const ContentSection = styled.div`
   }  
 `;
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled(motion.div)`
   overflow: hidden;
+  padding: 2rem 0;
 `;
 
 const BreakLine = styled(motion.div)`
   height: 4px;
   max-width: 30rem;
-  background-color: ${({ theme }) => theme.black};
+  background-color: ${({ theme }) => theme.primary};
   border-radius: 50rem;
-  margin: 0 auto 2rem 0;
+  margin-right: auto;
+`;
+
+const StyledParagraph = styled(Paragraph)`
+  margin-bottom: ${({ theme }) => theme.fontSize.l};
 `;
 
 const TestimonialsView = ({ isVisible }) => (
@@ -88,7 +93,7 @@ const TestimonialsView = ({ isVisible }) => (
       </HeadingWrapper>
 
       <div>
-        <Paragraph
+        <StyledParagraph
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
@@ -99,8 +104,8 @@ const TestimonialsView = ({ isVisible }) => (
           Amet consectetur adipiscing elit quisque faucibus ex sapien.
           Quisque faucibus ex sapien vitae pellentesque sem placerat.
           Vitae pellentesque sem placerat in id cursus mi.
-        </Paragraph>
-        <Paragraph
+        </StyledParagraph>
+        <StyledParagraph
           big
           as={motion.p}
           initial={{ y: '10%', opacity: 0 }}
@@ -112,7 +117,7 @@ const TestimonialsView = ({ isVisible }) => (
           Vitae pellentesque sem placerat in id cursus mi.
           Cursus mi pretium tellus duis convallis tempus leo.
           Tempus leo eu aenean sed diam urna tempor.
-        </Paragraph>
+        </StyledParagraph>
       </div>
 
     </ContentSection>

@@ -12,18 +12,15 @@ const Wrapper = styled.div`
   position: relative;
   height: 14rem;
   width: 14rem;
-  margin: 0.5rem;
    
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport7} { 
     height: 20rem;
     width: 20rem;
-    margin: 1rem;
   }  
   
   @media screen and ${({ theme: { viewPorts } }) => viewPorts.viewport12} { 
     height: 25rem;
     width: 25rem;
-    margin: 1rem;
   }
 `;
 
@@ -61,7 +58,7 @@ const ContentContainer = styled(motion.div)`
   height: auto;
   max-width: 40rem;
   max-height: 100%;
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.background};
   margin: auto;
   cursor: pointer;
   overflow: hidden;

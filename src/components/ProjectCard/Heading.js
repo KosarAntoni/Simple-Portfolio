@@ -21,7 +21,7 @@ const HeadingWrapper = styled(motion.div)`
 const StyledHeading = styled(Heading)`
   padding: 0.5rem 1rem;
   border-radius: 10rem;
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.background};
   margin: 0;
 `;
 
@@ -35,7 +35,7 @@ const CloseButton = styled.button`
   data-icon='times' 
   xmlns='http://www.w3.org/2000/svg' 
   viewBox='0 0 352 512'%3E%3Cpath 
-  fill='${({ theme }) => theme.black}' 
+  fill='${({ theme }) => theme.primary}' 
   d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E");
   background-size: 40%;
   background-repeat: no-repeat;
@@ -44,7 +44,7 @@ const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 10rem;
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.background};
   transition: box-shadow 0.2s, transform 0.3s;
   
   :hover {

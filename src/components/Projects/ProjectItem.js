@@ -6,7 +6,7 @@ import ProjectCard from '../ProjectCard';
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const ProjectsAnimation = {
+const animation = {
   visible: {
     scale: 1,
     x: 0,
@@ -44,11 +44,11 @@ const ProjectItem = ({ i, item, isVisible }) => {
                 ) : (
                   <motion.li
                     custom={i}
-                    variants={ProjectsAnimation}
+                    variants={animation}
                     initial="hidden"
                     animate={isVisible ? 'visible' : 'exit'}
                     transition={{
-                      ...ProjectsAnimation.transition,
+                      ...animation.transition,
                       delay: isVisible ? (getRandom(1, 5) / 10) + 1 : getRandom(1, 5) / 10,
                     }}
                   >

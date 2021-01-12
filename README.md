@@ -25,6 +25,7 @@
 * Fully responsive
 * Images preload
 * Scroll spy
+* Auto dark mode
 
 ## Status
 Project is: _finished_.

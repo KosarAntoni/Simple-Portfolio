@@ -7,8 +7,9 @@ import GlobalStyle from '../theme/GlobalStyle';
 import { themeLight, themeDark } from '../theme/mainTheme';
 import ProjectsView from './ProjectsView';
 import TestimonialsView from './TestimonialsView';
-import CardsContainer from '../components/CardsContainer';
 import { DummyProjects } from '../data/DummyData';
+import Projects from '../components/Projects/Projects';
+import Testimonials from '../components/Testimonials/Testimonials';
 
 const Root = () => {
   const [theme, setTheme] = useState(themeLight);
@@ -61,13 +62,14 @@ const Root = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter ref={ref}>
+        <GlobalStyle />
         <ProjectsView
           currentSection={currentSection}
           setCurrentSection={setCurrentSection}
         />
-        <GlobalStyle />
-        <CardsContainer currentSection={currentSection} />
+        <Projects currentSection={currentSection} />
         <TestimonialsView isVisible={currentSection === 'testimonials'} />
+        <Testimonials currentSection={currentSection} />
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -3,20 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
 
-const TestimonialsAnimation = {
+const animation = {
   visible: {
     scale: 1,
     y: 0,
     opacity: 1,
   },
-  hidden: (i) => ({
+  exit: () => ({
     scale: 0.8,
-    y: (i + 1) * 50,
-    opacity: 0,
-  }),
-  exit: (i) => ({
-    scale: 0.8,
-    y: (i + 1) * -20,
+    y: 0,
     opacity: 0,
   }),
   transition: {
@@ -26,13 +21,12 @@ const TestimonialsAnimation = {
 
 const TestimonialItem = ({ i, item, isVisible }) => (
   <motion.li
-    custom={i}
-    variants={TestimonialsAnimation}
-    initial="false"
+    variants={animation}
+    initial="exit"
     animate={isVisible ? 'visible' : 'exit'}
     exit="exit"
     transition={{
-      ...TestimonialsAnimation.transition, delay: isVisible ? (i / 20) + 1 : i / 20,
+      ...animation.transition, delay: isVisible ? (i / 20) + 1 : i / 20,
     }}
   >
     <TestimonialCard date={item.date} text={item.text} title={item.title} />
